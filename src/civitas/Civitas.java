@@ -7,5 +7,6 @@ public class Civitas {
                         1000, 500, 100);
         
         System.out.println(casilla1.toString());
+        System.out.println(casilla1.getNombre());
     } 
 }
