@@ -60,5 +60,6 @@ public class Casilla {
         
         return casilla_s;
     }
+    //Probando si se sincroniza uno editado por ti
 } 
 
