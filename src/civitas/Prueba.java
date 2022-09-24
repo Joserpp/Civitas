@@ -1,7 +1,7 @@
 package civitas;
 
 public class Prueba{
-    private nombre;
-    private edad;
+    private int nombre;
+    private int edad;
     
 }
