@@ -9,4 +9,6 @@ public class Civitas {
         System.out.println(casilla1.toString());
         System.out.println(casilla1.getNombre());
     } 
+
+    "Pruebzzz"
 }
