@@ -10,5 +10,4 @@ public class Civitas {
         System.out.println(casilla1.getNombre());
     } 
 
-    "Pruebzzz"
 }
