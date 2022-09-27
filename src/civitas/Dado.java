@@ -46,7 +46,7 @@ public class Dado {
         
         int empieza;
         empieza=(int)(random.nextDouble()*(n-1));
-        
+
         
         return empieza;
     }
