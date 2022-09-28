@@ -38,6 +38,8 @@ public class Tablero {
 
     Casilla getCasilla (int numCasilla){
         if (correcto(numCasilla))
-            return casillas;
+            return casillas.get(numCasilla);
+
+        else return null;
     }
 }
