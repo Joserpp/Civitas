@@ -42,4 +42,15 @@ public class Tablero {
 
         else return null;
     }
+
+    int nuevaPosicion (int actual, int tirada){
+        int nuevaPos;
+
+        nuevaPos = actual + tirada;
+
+        if (nuevaPos > casillas.size())
+            nuevaPos = casillas.size()%nuevaPos;
+
+        return nuevaPos;
+    }
 }
