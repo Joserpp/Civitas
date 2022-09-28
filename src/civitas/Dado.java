@@ -5,7 +5,7 @@
 package civitas;
 import java.util.Random;
 
-import javax.lang.model.util.ElementScanner6;
+//import javax.lang.model.util.ElementScanner6;
 
 
 public class Dado {
