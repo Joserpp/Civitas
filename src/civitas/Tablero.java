@@ -27,8 +27,9 @@ public class Tablero {
     }
 
     boolean computarPasoPorSalida(){
-        return porSalida;
         porSalida = false;
+        return porSalida;
+        
     }
 
     void añadeCasilla(Casilla casilla){

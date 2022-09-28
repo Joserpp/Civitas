@@ -32,6 +32,7 @@ public class Dado {
     
     int tirar (){
         int devuelve;
+        random=new Random(6);
         if(debug==false)
             devuelve=1;
         else
