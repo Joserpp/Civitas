@@ -21,6 +21,8 @@ public class Casilla {
         numCasas = 0;
         numHoteles = 0;
     }
+
+    public Casilla(tipo::TipoCasilla DESCANSO, String nombre){}
     
     public TipoCasilla getTipoCasilla(){
         return casilla;
