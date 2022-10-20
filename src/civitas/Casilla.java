@@ -10,19 +10,25 @@ public class Casilla {
     private float precioBaseAlquiler;
     private int numCasas;
     private int numHoteles;
+
+    private static float FACTORALQUILERCALLE = 1.0f;
+    private static float FACTORALQUILERCASA = 1.0f;
+    private static float FACTORALQUILERHOTEL = 4.0f;
+
+    public Casilla(String n){
+        init();
+        casilla = TipoCasilla.DESCANSO;
+        nombre = n;
+    }
     
-    public Casilla (TipoCasilla unTipo, String unNombre, float unPrecioCompra,
-                    float unPrecioEdificar, float unPrecioAlquilerBase){
-        casilla = unTipo;
-        nombre = unNombre;
-        precioCompra = unPrecioCompra;
-        precioEdificar = unPrecioEdificar;
-        precioBaseAlquiler = unPrecioAlquilerBase;
+    private void init(){
+        nombre = " ";
+        precioCompra = 0;
+        precioEdificar = 0;
+        precioBaseAlquiler = 0;
         numCasas = 0;
         numHoteles = 0;
     }
-
-    public Casilla(tipo::TipoCasilla DESCANSO, String nombre){}
     
     public TipoCasilla getTipoCasilla(){
         return casilla;
@@ -58,7 +64,7 @@ public class Casilla {
         String casilla_s = nombre;
         casilla_s += " Compra: " + precioCompra + ", Edificar: " + precioEdificar
                     +", Alquiler base: " + precioBaseAlquiler + ", Casas: "
-                    + numCasas + ", Hoteles: " + numHoteles;
+                    + numCasas + ", Hoteles: " + numHoteles + ", Tipo: " + casilla;
         
         return casilla_s;
     }

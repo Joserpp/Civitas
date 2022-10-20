@@ -10,8 +10,8 @@ public class Tablero {
     private void init(){
         casillas = new ArrayList<Casilla>(0);
         porSalida = false;
-        Casilla Salida = new Casilla(TipoCasilla.CALLE, "Salida", 0, 0, 0);
-        casillas.add(Salida);
+        //Casilla Salida = new Casilla(TipoCasilla.CALLE, "Salida", 0, 0, 0);
+        //casillas.add(Salida);
     }
 
     public Tablero (){
