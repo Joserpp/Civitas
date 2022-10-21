@@ -2,6 +2,8 @@ package civitas;
 
 enum TipoCasilla { CALLE, SORPRESA, DESCANSO }
 
+enum TipoSorpresa {PAGARCOBRAR,PORCASAHOTEL}
+
 public class Casilla {
     private TipoCasilla casilla;
     private String nombre;
@@ -30,6 +32,46 @@ public class Casilla {
         numHoteles = 0;
     }
     
+    //Constructores de visibilidad de paquete
+
+    Casilla (TipoCasilla a,String nombre ){
+            
+            this.init();
+            if(a==TipoCasilla.DESCANSO)
+            casilla=a;
+
+            else if(a==TipoCasilla.SORPRESA)
+            casilla=a;
+            this.nombre=nombre;
+        casilla=TipoCasilla.CALLE;
+    }
+
+    
+
+    Casilla (TipoCasilla tipo = TipoCasilla.CALLE,String titulo,float PrecioCompra, float precioEdificar, float precioBaseAlquiler){
+        
+        this.init();
+        casilla=tipo;
+
+    }
+
+    private void init(){
+
+        casilla=null;
+        nombre=" ";
+        precioCompra=0;
+        precioEdificar=0;
+        precioBaseAlquiler=0;
+        numCasas=0;
+        numHoteles=0;
+
+    }
+
+    public int cantidadCasasHoteles(){
+
+        return(numCasas+numHoteles);
+    }
+
     public TipoCasilla getTipoCasilla(){
         return casilla;
     }
@@ -67,6 +109,9 @@ public class Casilla {
                     + numCasas + ", Hoteles: " + numHoteles + ", Tipo: " + casilla;
         
         return casilla_s;
+    }
+    public void tramitarAlquiler(Jugador jugador){
+
     }
   
 } 
