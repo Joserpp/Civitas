@@ -1,4 +1,5 @@
 package civitas;
+import java.util.ArrayList;
 
 enum TipoCasilla { CALLE, SORPRESA, DESCANSO }
 
@@ -12,49 +13,11 @@ public class Casilla {
     private float precioBaseAlquiler;
     private int numCasas;
     private int numHoteles;
-
+    private Jugador propietario=null;
     private static float FACTORALQUILERCALLE = 1.0f;
     private static float FACTORALQUILERCASA = 1.0f;
     private static float FACTORALQUILERHOTEL = 4.0f;
-
-    public Casilla(String n){
-        init();
-        casilla = TipoCasilla.DESCANSO;
-        nombre = n;
-    }
     
-    private void init(){
-        nombre = " ";
-        precioCompra = 0;
-        precioEdificar = 0;
-        precioBaseAlquiler = 0;
-        numCasas = 0;
-        numHoteles = 0;
-    }
-    
-    //Constructores de visibilidad de paquete
-
-    Casilla (TipoCasilla a,String nombre ){
-            
-            this.init();
-            if(a==TipoCasilla.DESCANSO)
-            casilla=a;
-
-            else if(a==TipoCasilla.SORPRESA)
-            casilla=a;
-            this.nombre=nombre;
-        casilla=TipoCasilla.CALLE;
-    }
-
-    
-
-    Casilla (TipoCasilla tipo = TipoCasilla.CALLE,String titulo,float PrecioCompra, float precioEdificar, float precioBaseAlquiler){
-        
-        this.init();
-        casilla=tipo;
-
-    }
-
     private void init(){
 
         casilla=null;
@@ -65,6 +28,37 @@ public class Casilla {
         numCasas=0;
         numHoteles=0;
 
+    }
+
+    
+    //Constructores de visibilidad de paquete
+
+
+    public Casilla(String n){
+        init();
+        casilla = TipoCasilla.DESCANSO;
+        nombre = n;
+    }
+
+    public Casilla (String titulo, float pC, float pE, float pBA){
+        init();
+        casilla = TipoCasilla.CALLE;
+        nombre = titulo;
+        precioCompra = pC;
+        precioEdificar = pE;
+        precioBaseAlquiler = pBA;
+    }
+
+    public Casilla (String n, MazoSorpresas mazo){
+        init();
+        casilla = TipoCasilla.SORPRESA;
+        nombre = n;
+    }   
+
+    
+    void informe (int actual, ArrayList<Jugador>todos){
+
+        Diario.getInstance().ocurreEvento(todos.get(actual)+ "ha caido en esta casilla cuyos datos son: "+this.toString());
     }
 
     public int cantidadCasasHoteles(){
@@ -101,18 +95,47 @@ public class Casilla {
     public int getNumHoteles(){
         return numHoteles;
     }
-    
     public String toString(){
         String casilla_s = nombre;
         casilla_s += " Compra: " + precioCompra + ", Edificar: " + precioEdificar
                     +", Alquiler base: " + precioBaseAlquiler + ", Casas: "
                     + numCasas + ", Hoteles: " + numHoteles + ", Tipo: " + casilla;
-        
         return casilla_s;
     }
     public void tramitarAlquiler(Jugador jugador){
+        if(this.tienePropietario() && !this.esEsteElPropietario(jugador))
+         {   jugador.pagaAlquiler(this.getPrecioAlquilerCompleto());
+            propietario.recibe(this.getPrecioAlquilerCompleto());
+         }
+    }
+
+    public boolean esEsteElPropietario(Jugador jugador){
+        if(jugador==propietario)
+            return true;
+        else 
+            return false;
 
     }
-  
+    public boolean tienePropietario(){
+        if(propietario==null)
+            return false;
+        else
+            return true;
+    }
+
+    boolean derruirCasas (int n, Jugador jugador){
+
+        boolean condicion=false;
+
+        if(this.esEsteElPropietario(jugador) && numCasas>=n){
+            numCasas=numCasas-n;
+            condicion=true;
+        }
+        return condicion;
+
+    }
+
+
+
 } 
 
