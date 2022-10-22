@@ -1,0 +1,106 @@
+
+package civitas;
+import java.util.ArrayList;
+import java.util.Random;
+
+enum EstadoJuego { INICIO_TURNO, DESPUES_AVANZAR, DESPUES_COMPRAR, DESPUES_GESTIONAR }
+
+//import javax.lang.model.util.ElementScanner6;
+
+
+public class CivitasJuego {
+    
+    private int indiceJugadorActual;
+
+    private ArrayList<Jugador> jugadores;
+
+    EstadoJuego estado;
+
+    GestorEstados estadojuego;
+
+    MazoSorpresas mazo;
+
+    Tablero tablero;
+    
+    //Constructor privado
+
+    private CivitasJuego (ArrayList<String> nombres,boolean debug){
+        
+        jugadores=new ArrayList<Jugador>(4);
+       
+        for(int i=0;i<nombres.size();i++){
+            String nombre_jugador = nombres.get(i);
+
+            Jugador jugador = new Jugador(nombre_jugador);
+
+            jugadores.add(jugador);
+
+        }
+
+        estado=estadojuego.estadoInicial();
+        
+        Dado.getInstance().setDebug(debug);
+
+        indiceJugadorActual=Dado.getInstance().quienEmpieza(jugadores.size());
+
+        mazo=new MazoSorpresas(debug);
+
+        tablero=new Tablero();
+
+        inicializaMazoSorpresa();
+
+        inicializaTablero(mazo);
+
+
+
+    }
+
+    private void inicializaTablero(MazoSorpresas mazo){
+
+        tablero.añadeCasilla(new Casilla("Puro relax"));
+
+    }
+
+    private void inicializaMazoSorpresa(){
+
+        mazo.alMazo(new Sorpresa(TipoSorpresa.PAGARCOBRAR, "prueba", 100));
+    }
+
+    public Jugador getJugadorActual(){
+
+        return jugadores.get(indiceJugadorActual);
+    }
+
+    private void pasarTurno(){
+
+        if(indiceJugadorActual==jugadores.size()){
+
+            indiceJugadorActual=0;
+        }
+
+        else
+            indiceJugadorActual++;
+
+    }
+
+    public void siguientePasoCompletado(OperacionJuego operacion){
+
+        estadojuego.siguienteEstado (jugadores.get(indiceJugadorActual), estado, operacion);
+
+    }
+
+    public boolean construirCasa(int ip){
+
+        return jugadores.get(indiceJugadorActual).construirCasa(ip);
+
+    }
+
+    public boolean construirHotel(int ip){
+
+        return jugadores.get(indiceJugadorActual).construirHotel(ip);
+
+    }
+
+    
+
+}

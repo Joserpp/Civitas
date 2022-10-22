@@ -50,6 +50,7 @@ public class Casilla {
         numHoteles = 0;
         propietario = null;
     }
+
     void informe (int actual, ArrayList<Jugador>todos){
 
         Diario.getInstance().ocurreEvento(todos.get(actual)+ "ha caido en esta casilla cuyos datos son: "+this.toString());
@@ -104,14 +105,14 @@ public class Casilla {
     }
 
     public boolean esEsteElPropietario(Jugador jugador){
-        if(jugador==propietario)
+        if(jugador == propietario)
             return true;
         else 
             return false;
 
     }
     public boolean tienePropietario(){
-        if(propietario==null)
+        if(propietario == null)
             return false;
         else
             return true;
