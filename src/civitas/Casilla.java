@@ -13,52 +13,12 @@ public class Casilla {
     private float precioBaseAlquiler;
     private int numCasas;
     private int numHoteles;
-    private Jugador propietario=null;
+    private Jugador propietario;
     private static float FACTORALQUILERCALLE = 1.0f;
     private static float FACTORALQUILERCASA = 1.0f;
     private static float FACTORALQUILERHOTEL = 4.0f;
-<<<<<<< HEAD
-=======
 
-    public Casilla(String n){
-        init();
-        casilla = TipoCasilla.DESCANSO;
-        nombre = n;
-    }
-
-    public Casilla (String titulo, float pC, float pE, float pBA){
-        init();
-        casilla = TipoCasilla.CALLE;
-        nombre = titulo;
-        precioCompra = pC;
-        precioEdificar = pE;
-        precioBaseAlquiler = pBA;
-    }
->>>>>>> f0bb002 (ujj)
-    
-    public Casilla (String n, MazoSorpresas mazo){
-        init();
-        casilla = TipoCasilla.SORPRESA;
-        nombre = n;
-    }
-
-    private void init(){
-<<<<<<< HEAD
-
-        casilla=null;
-        nombre=" ";
-        precioCompra=0;
-        precioEdificar=0;
-        precioBaseAlquiler=0;
-        numCasas=0;
-        numHoteles=0;
-
-    }
-
-    
     //Constructores de visibilidad de paquete
-
-
     public Casilla(String n){
         init();
         casilla = TipoCasilla.DESCANSO;
@@ -80,32 +40,19 @@ public class Casilla {
         nombre = n;
     }   
 
-    
-    void informe (int actual, ArrayList<Jugador>todos){
-
-        Diario.getInstance().ocurreEvento(todos.get(actual)+ "ha caido en esta casilla cuyos datos son: "+this.toString());
-=======
+    private void init(){
+        casilla = null;
         nombre = " ";
         precioCompra = 0;
         precioEdificar = 0;
         precioBaseAlquiler = 0;
         numCasas = 0;
         numHoteles = 0;
+        propietario = null;
     }
-    
-    //Constructores de visibilidad de paquete
+    void informe (int actual, ArrayList<Jugador>todos){
 
-    Casilla (TipoCasilla a,String nombre ){
-            
-            this.init();
-            if(a==TipoCasilla.DESCANSO)
-            casilla=a;
-
-            else if(a==TipoCasilla.SORPRESA)
-            casilla=a;
-            this.nombre=nombre;
-        casilla=TipoCasilla.CALLE;
->>>>>>> f0bb002 (ujj)
+        Diario.getInstance().ocurreEvento(todos.get(actual)+ "ha caido en esta casilla cuyos datos son: "+this.toString());
     }
 
     public int cantidadCasasHoteles(){
