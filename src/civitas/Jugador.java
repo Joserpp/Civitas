@@ -53,7 +53,7 @@ public abstract class Jugador implements Comparable<Jugador>{
         return CasasMax;
     }
 
-    static int getCasaPorHotel(){
+    static int getCasasPorHotel(){
         return CasasPorHotel;
     }
 
@@ -127,9 +127,10 @@ public abstract class Jugador implements Comparable<Jugador>{
     }
 
     boolean pasaPorSalida(){
-        recibe(PasoPorSallida);
+        recibe(PasoPorSalida);
 
-        Diario.getInstance().ocurreEvento(nombre+);
+        Diario.getInstance().ocurreEvento(nombre + " ha pasado por la salida");
+        return true;
     }
 
     boolean puedeComprarCasilla(){
@@ -139,8 +140,40 @@ public abstract class Jugador implements Comparable<Jugador>{
         return puedeComprar;
     }
 
+    private boolean puedoEdificarCasa(Casilla propiedad){
+        boolean puede = false;
+
+        if (puedoGastar(propiedad.getPrecioEdificar()) && propiedad.getNumCasas() < getCasasMax())
+            puede = true;
+
+        return puede;
+    }
+
+    private boolean puedoEdificarHotel(Casilla propiedad){
+        boolean puede = false;
+
+        if (puedoGastar(propiedad.getPrecioEdificar()) && propiedad.getNumHoteles() < getHotelesMax() 
+            && propiedad.getNumCasas() <= getCasasPorHotel())
+            puede = true;
+
+        return puede;
+    }
+
+    private boolean puedoGastar(float precio){
+        return saldo >= precio;
+    }
+
     boolean recibe(float cantidad){
 
-        return modificaSaldo(cantidad);
+        return modificarSaldo(cantidad);
+    }
+
+    boolean tieneAlgoQueGestionar(){
+        boolean tiene = true;
+
+        if (propiedades == null)
+            tiene = false;
+
+        return false;
     }
 }
