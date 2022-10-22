@@ -1,5 +1,7 @@
 package civitas;
 
+import java.util.ArrayList;
+
 public class Sorpresa {
     private String texto;
     private int valor;
@@ -17,10 +19,24 @@ public class Sorpresa {
 
     }
 
-    private void aplicarAJugador_pagarCobrar(int actual,Jugador todos[]){
 
+    private 
+
+    private void aplicarAJugador_pagarCobrar(int actual,ArrayList<Jugador> todos){
+
+        todos.get(actual).modificaSaldo(this.valor);
+    }
+
+    void informe (int actual, ArrayList<Jugador> todos){
+
+        Diario.getInstance().ocurreEvento(todos.get(actual) + this.toString());
 
     }
 
+    public String toString(){
+        
+        return texto;
+    }
 
+    private void aplicarAJugador_porCasaHotel(int actual,ArrayList<>)
 }
