@@ -176,4 +176,8 @@ public abstract class Jugador implements Comparable<Jugador>{
 
         return false;
     }
+
+    public String toString() {
+        return "Jugador{" + "casillaActual=" + casillaActual + ", nombre=" + nombre + ", puedeComprar=" + puedeComprar + ", saldo=" + saldo + ", propiedades=" + propiedades + '}';
+    }
 }
