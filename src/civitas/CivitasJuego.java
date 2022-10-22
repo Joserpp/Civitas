@@ -1,6 +1,8 @@
 
 package civitas;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Random;
 
 enum EstadoJuego { INICIO_TURNO, DESPUES_AVANZAR, DESPUES_COMPRAR, DESPUES_GESTIONAR }
@@ -13,7 +15,7 @@ public class CivitasJuego {
     private int indiceJugadorActual;
 
     private ArrayList<Jugador> jugadores;
-
+ 
     EstadoJuego estado;
 
     GestorEstados estadojuego;
@@ -101,6 +103,27 @@ public class CivitasJuego {
 
     }
 
-    
+    public boolean finalDelJuego(){
+        boolean condicion;
+
+        for(int i=0;i<jugadores.size();i++){
+            condicion=jugadores.get(i).enBancarrota();
+        }
+        return condicion;
+    }
+
+    private ArrayList<Jugador> ranking(){
+
+        Collections.sort(jugadores,Jugador::compareTo);
+        return jugadores;
+
+    }
+
+    private void contabilizarPasosPorSalida(){
+
+        if(tablero.computarPasoPorSalida())
+            jugadores.get(indiceJugadorActual).pasaPorSalida();
+
+    }
 
 }
