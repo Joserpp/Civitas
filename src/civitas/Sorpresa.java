@@ -7,9 +7,12 @@ public class Sorpresa {
     private int valor;
     private TipoSorpresa tipo;
 
-    void aplicarAJugador(int actual,Jugador todos[]){
-        
+    void aplicarAJugador(int actual, ArrayList<Jugador> todos){
 
+        if (tipo == TipoSorpresa.PAGARCOBRAR)
+            aplicarAJugador_pagarCobrar(actual, todos);
+        else 
+            aplicarAJugador_porCasaHotel(actual, todos);
     }
 
     Sorpresa (TipoSorpresa tipo,String texto, int valor){
@@ -19,17 +22,15 @@ public class Sorpresa {
 
     }
 
+    private void aplicarAJugador_pagarCobrar(int actual, ArrayList<Jugador> todos){
 
-    private 
-
-    private void aplicarAJugador_pagarCobrar(int actual,ArrayList<Jugador> todos){
-
+        informe(actual, todos);
         todos.get(actual).modificaSaldo(this.valor);
     }
 
     void informe (int actual, ArrayList<Jugador> todos){
 
-        Diario.getInstance().ocurreEvento(todos.get(actual) + this.toString());
+        Diario.getInstance().ocurreEvento("A " + todos.get(actual).getNombre() + " se le esta aplicando una sorpresa");
 
     }
 
@@ -38,5 +39,10 @@ public class Sorpresa {
         return texto;
     }
 
-    private void aplicarAJugador_porCasaHotel(int actual,ArrayList<>)
+    private void aplicarAJugador_porCasaHotel(int actual,ArrayList<Jugador>todos){
+
+        informe(actual, todos);
+        int factor = todos.get(actual).cantidadCasasHoteles();
+        todos.get(actual).modificaSaldo(this.valor*factor);
+    }
 }

@@ -2,6 +2,7 @@ package civitas;
 import java.util.ArrayList;
 
 public abstract class Jugador implements Comparable<Jugador>{
+
     protected static int CasasMax=4;
     protected static int CasasPorHotel=4;
     private int casillaActual;
@@ -12,12 +13,11 @@ public abstract class Jugador implements Comparable<Jugador>{
     private float saldo;
     private static float SaldoInicial=7500;
     private ArrayList<Casilla> propiedades=new ArrayList<Casilla>(0); 
+
+
+    Jugador (String nombre){
+        this.nombre=nombre;
     
-    
-    private boolean existeLaPropiedad(int ip){
-
-
-
     }
 
     boolean puedeComprarCasilla(){
@@ -51,4 +51,30 @@ public abstract class Jugador implements Comparable<Jugador>{
         return modificaSaldo(cantidad);
     }
 
+    int cantidadCasasHoteles(){
+        int cantidadcasashoteles=0;
+        for(int i=0;i<propiedades.size();i++){
+            cantidadcasashoteles+=propiedades.get(i).getNumCasas()+propiedades.get(i).getNumHoteles();
+
+        }
+
+        return cantidadcasashoteles;
+    }
+
+    protected String getNombre(){
+        return nombre;
+    }
+
+    public int compareTo(){
+        
+    }
+
+    private boolean construirCasa(int ip){
+
+    }
+
+    private boolean construirHotel(int ip){
+
+        
+    }
 }
