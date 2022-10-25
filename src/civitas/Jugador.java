@@ -171,7 +171,6 @@ public abstract class Jugador implements Comparable<Jugador>{
     boolean recibe(float cantidad){
 
         return modificarSaldo(cantidad);
-<<<<<<< HEAD
     }
 
     boolean tieneAlgoQueGestionar(){
@@ -185,7 +184,5 @@ public abstract class Jugador implements Comparable<Jugador>{
 
     public String toString() {
         return "Jugador{" + "casillaActual=" + casillaActual + ", nombre=" + nombre + ", puedeComprar=" + puedeComprar + ", saldo=" + saldo + ", propiedades=" + propiedades + '}';
-=======
->>>>>>> 4e89486 (p)
     }
 }
