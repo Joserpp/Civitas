@@ -129,12 +129,8 @@ public abstract class Jugador implements Comparable<Jugador>{
     boolean pasaPorSalida(){
         recibe(PasoPorSalida);
 
-<<<<<<< HEAD
         Diario.getInstance().ocurreEvento(nombre + " ha pasado por la salida");
-=======
-        Diario.getInstance().ocurreEvento(nombre + "ha pasado por la salida");
 
->>>>>>> 4e89486 (p)
         return true;
     }
 
