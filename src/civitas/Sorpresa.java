@@ -25,7 +25,7 @@ public class Sorpresa {
     private void aplicarAJugador_pagarCobrar(int actual, ArrayList<Jugador> todos){
 
         informe(actual, todos);
-        todos.get(actual).modificaSaldo(this.valor);
+        todos.get(actual).modificarSaldo(this.valor);
     }
 
     void informe (int actual, ArrayList<Jugador> todos){
@@ -43,6 +43,6 @@ public class Sorpresa {
 
         informe(actual, todos);
         int factor = todos.get(actual).cantidadCasasHoteles();
-        todos.get(actual).modificaSaldo(this.valor*factor);
+        todos.get(actual).modificarSaldo(this.valor*factor);
     }
 }
