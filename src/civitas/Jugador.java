@@ -141,7 +141,7 @@ public abstract class Jugador implements Comparable<Jugador>{
         return propiedades;
     }
 
-    boolean PuedeComprar(){
+    boolean getPuedeComprar(){
         return puedeComprar;
     }
 
