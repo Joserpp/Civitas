@@ -88,9 +88,21 @@ public abstract class Jugador implements Comparable<Jugador>{
         if(existe){
 
             Casilla propiedad=propiedades.get(ip);
+            boolean puedoEdificar=this.puedoEdificarCasa(propiedad);
+           
+           
+
+            if(puedoEdificar){
+                result=propiedad.construirCasa(this);
+
+               Diario.getInstance().ocurreEvento("El jugador " +  nombre + "construye casa en la propiedad " + ip);
+
+
+
+            }
         }
 
-
+        return result;
     }
 
     private boolean enBancarrota(){

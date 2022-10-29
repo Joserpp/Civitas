@@ -126,4 +126,35 @@ public class CivitasJuego {
 
     }
 
+    boolean comprar(){
+
+        Jugador jugadorActual=jugadores.get(indiceJugadorActual);
+        int numCasillaActual=jugadorActual.getCasillaActual();
+
+        Casilla casilla=tablero.getCasilla(numCasillaActual);
+
+        boolean res=jugadorActual.comprar(casilla);
+
+        return res;
+
+    }
+
+    void avanzaJugador(){
+
+        Jugador jugadorActual=jugadores.get(indiceJugadorActual);
+
+        int posicionActual=jugadorActual.getCasillaActual();
+
+        int tirada=Dado.getInstance().tirar();
+
+        int posicionNueva=tablero.nuevaPosicion(posicionActual,tirada);
+
+        Casilla casilla=tablero.getCasilla(posicionNueva);
+
+        this.contabilizarPasosPorSalida();
+
+        jugadorActual.moverACasilla(posicionNueva);
+
+        casilla.recibeJugador(indiceJugadorActual,jugadores);
+    }
 }
