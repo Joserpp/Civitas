@@ -28,18 +28,70 @@ public abstract class Jugador implements Comparable<Jugador>{
         return Float.compare(otro.saldo, saldo);
     }
 
-    /*
-    boolean comparar(Casilla titulo){
 
+    boolean comprar(Casilla titulo){
+
+        boolean result=false;
+
+        if(puedeComprar){
+
+            float precio=titulo.getPrecioCompra();
+            
+            if(this.puedoGastar(precio)){
+            
+                result=titulo.comprar(this);
+
+                propiedades.add(titulo);
+
+                Diario.getInstance().ocurreEvento("El jugador " + this.toString() + " compra la propiedad "+titulo.getNombre());
+        
+                puedeComprar=false;
+            }
+            else    
+                Diario.getInstance().ocurreEvento("El jugador " + this.toString() + "no tiene saldo para comprar la propiedad " + titulo.getNombre());
+        }
+
+        return result;
     }
 
-    private boolean construirCasa(int ip){
-
-    }
-
+     
     private boolean construirHotel(int ip){
 
-    }*/
+        boolean result=false;
+
+        if(this.existeLaPropiedad(ip)){
+
+            Casilla propiedad= propiedades.get(ip);
+
+            boolean puedoEdificarHotel=this.puedoEdificarHotel(propiedad);
+
+            if(puedoEdificarHotel){
+                result=propiedad.construirHotel(this);
+
+                propiedad.derruirCasas(CasasPorHotel, this);
+
+                Diario.getInstance().ocurreEvento("El jugador " + nombre + "construye hotel en la propiedad" + ip);
+            }
+
+        }
+
+        return result;
+    }
+
+    
+    private boolean construirCasa(int ip){
+
+        boolean result=false;
+        
+        boolean existe=this.existeLaPropiedad(ip);
+
+        if(existe){
+
+            Casilla propiedad=propiedades.get(ip);
+        }
+
+
+    }
 
     private boolean enBancarrota(){
         return (saldo < 0);

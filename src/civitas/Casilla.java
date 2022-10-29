@@ -118,6 +118,16 @@ public class Casilla {
             return true;
     }
 
+    boolean comprar(Jugador jugador){
+
+        propietario=jugador;
+
+        return jugador.paga(precioCompra);
+
+
+    }
+
+
     boolean derruirCasas (int n, Jugador jugador){
 
         boolean condicion=false;
@@ -127,6 +137,24 @@ public class Casilla {
             condicion=true;
         }
         return condicion;
+
+    }
+
+
+    boolean construirHotel(Jugador jugador){
+
+        jugador.paga(precioEdificar);
+
+        numHoteles++;
+
+        return true;
+    }
+
+
+    private boolean construirCasa(Jugador jugador){
+
+        
+
 
     }
 
