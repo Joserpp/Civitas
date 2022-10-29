@@ -55,7 +55,7 @@ public abstract class Jugador implements Comparable<Jugador>{
     }
 
      
-    private boolean construirHotel(int ip){
+    boolean construirHotel(int ip){
 
         boolean result=false;
 
@@ -79,7 +79,7 @@ public abstract class Jugador implements Comparable<Jugador>{
     }
 
     
-    private boolean construirCasa(int ip){
+    boolean construirCasa(int ip){
 
         boolean result=false;
         
