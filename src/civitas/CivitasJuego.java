@@ -104,7 +104,7 @@ public class CivitasJuego {
     }
 
     public boolean finalDelJuego(){
-        boolean condicion;
+        boolean condicion=false;
 
         for(int i=0;i<jugadores.size();i++){
             condicion=jugadores.get(i).enBancarrota();
@@ -141,7 +141,7 @@ public class CivitasJuego {
 
     void avanzaJugador(){
 
-        Jugador jugadorActual=jugadores.get(indiceJugadorActual);
+        Jugador jugadorActual=getJugadorActual();
 
         int posicionActual=jugadorActual.getCasillaActual();
 

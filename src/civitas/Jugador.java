@@ -1,7 +1,7 @@
 package civitas;
 import java.util.ArrayList;
 
-public abstract class Jugador implements Comparable<Jugador>{
+public class Jugador implements Comparable<Jugador>{
 
     protected static int CasasMax=4;
     protected static int CasasPorHotel=4;
@@ -105,7 +105,7 @@ public abstract class Jugador implements Comparable<Jugador>{
         return result;
     }
 
-    private boolean enBancarrota(){
+    boolean enBancarrota(){
         return (saldo < 0);
     }
 
@@ -149,14 +149,14 @@ public abstract class Jugador implements Comparable<Jugador>{
         return saldo;
     }
 
-    void Jugador(String n){
+    Jugador(String n){
         nombre = n;
         casillaActual = 0;
         puedeComprar = false;
         saldo = SaldoInicial;
     }
 
-    protected void Jugador(Jugador otro){
+    protected Jugador(Jugador otro){
         propiedades = otro.propiedades;
         casillaActual = otro.casillaActual;
         nombre = otro.nombre;
