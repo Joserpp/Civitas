@@ -151,14 +151,16 @@ public class Casilla {
     }
 
 
-    private boolean construirCasa(Jugador jugador){
+    boolean construirCasa(Jugador jugador){
 
-        
+        jugador.paga(this.getPrecioEdificar());
+        numCasas++;
+        return true;     
 
 
     }
 
-
+    
 
 } 
 
