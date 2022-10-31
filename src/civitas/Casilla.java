@@ -51,11 +51,6 @@ public class Casilla {
         propietario = null;
     }
 
-    void informe (int actual, ArrayList<Jugador>todos){
-
-        Diario.getInstance().ocurreEvento(todos.get(actual)+ "ha caido en esta casilla cuyos datos son: "+this.toString());
-    }
-
     public int cantidadCasasHoteles(){
 
         return(numCasas+numHoteles);
@@ -155,12 +150,36 @@ public class Casilla {
 
         jugador.paga(this.getPrecioEdificar());
         numCasas++;
-        return true;     
+        return true;
+    }
 
+    void informe (int actual, ArrayList<Jugador>todos){
+
+        Diario.getInstance().ocurreEvento(todos.get(actual) + 
+                                          "ha caido en esta casilla cuyos datos son: "
+                                           + this.toString());
+    }
+
+    void recibeJugador_calle(int iactual, ArrayList<Jugador>todos){
+        informe(iactual, todos);
+        Jugador jugador = todos.get(iactual);
+        if(!tienePropietario()){
+            jugador.puedeComprarCasilla();
+        }
+        else tramitarAlquiler(jugador);
 
     }
 
-    
-
+    void recibeJugador(int iactual, ArrayList<Jugador> todos){
+        if(casilla == TipoCasilla.CALLE){
+            recibeJugador_calle(iactual, todos);
+        }
+        else if(casilla == TipoCasilla.SORPRESA){
+            //recibeJugador_sorpresa(iactual, todos);
+        }
+        else if(casilla == TipoCasilla.DESCANSO){
+            informe(iactual, todos);
+        }
+    }
 } 
 
