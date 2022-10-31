@@ -23,8 +23,6 @@ public class CivitasJuego {
     private MazoSorpresas mazo;
 
     private Tablero tablero;
-
-    private GestorEstados gestor;
     
     //Constructor privado
 
@@ -163,7 +161,7 @@ public class CivitasJuego {
     public OperacionJuego siguientePaso(){
         Jugador jugadorActual = getJugadorActual();
 
-        OperacionJuego operacion = gestor.siguienteOperacion(jugadorActual, estado);
+        OperacionJuego operacion = estadojuego.siguienteOperacion(jugadorActual, estado);
 
         if (operacion == OperacionJuego.PASAR_TURNO){
             pasarTurno();
