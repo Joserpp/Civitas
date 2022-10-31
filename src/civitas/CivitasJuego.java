@@ -16,13 +16,15 @@ public class CivitasJuego {
 
     private ArrayList<Jugador> jugadores;
  
-    EstadoJuego estado;
+    private EstadoJuego estado;
 
-    GestorEstados estadojuego;
+    private GestorEstados estadojuego;
 
-    MazoSorpresas mazo;
+    private MazoSorpresas mazo;
 
-    Tablero tablero;
+    private Tablero tablero;
+
+    private GestorEstados gestor;
     
     //Constructor privado
 
@@ -156,5 +158,22 @@ public class CivitasJuego {
         jugadorActual.moverACasilla(posicionNueva);
 
         casilla.recibeJugador(indiceJugadorActual,jugadores);
+    }
+
+    public OperacionJuego siguientePaso(){
+        Jugador jugadorActual = getJugadorActual();
+
+        OperacionJuego opercion = gestor.siguienteOperacion(jugadorActual, estado);
+
+        if (opercion == OperacionJuego.PASAR_TURNO){
+            pasarTurno();
+            siguientePasoCompletado(opercion);
+        }
+        else if(opercion == OperacionJuego.AVANZAR){
+            avanzaJugador();
+            siguientePasoCompletado(opercion);
+        }
+
+        return opercion;
     }
 }
