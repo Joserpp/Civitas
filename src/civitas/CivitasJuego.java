@@ -163,17 +163,17 @@ public class CivitasJuego {
     public OperacionJuego siguientePaso(){
         Jugador jugadorActual = getJugadorActual();
 
-        OperacionJuego opercion = gestor.siguienteOperacion(jugadorActual, estado);
+        OperacionJuego operacion = gestor.siguienteOperacion(jugadorActual, estado);
 
-        if (opercion == OperacionJuego.PASAR_TURNO){
+        if (operacion == OperacionJuego.PASAR_TURNO){
             pasarTurno();
-            siguientePasoCompletado(opercion);
+            siguientePasoCompletado(operacion);
         }
-        else if(opercion == OperacionJuego.AVANZAR){
+        else if(operacion == OperacionJuego.AVANZAR){
             avanzaJugador();
-            siguientePasoCompletado(opercion);
+            siguientePasoCompletado(operacion);
         }
 
-        return opercion;
+        return operacion;
     }
 }
