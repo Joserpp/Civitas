@@ -6,7 +6,19 @@ public class GestionInmobiliaria {
     private OperacionInmobiliaria operacion;
 
 
-    
+    GestionInmobiliaria(OperacionInmobiliaria gest, int ip){
 
+        propiedad=ip;
+        operacion=gest;
+    }
+
+    public OperacionInmobiliaria getOperacion(){
+
+        return operacion;
+    }
+
+    public int getPropiedad(){
+        return propiedad;
+    }
 
 }
