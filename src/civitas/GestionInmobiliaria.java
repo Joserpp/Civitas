@@ -10,6 +10,7 @@ public class GestionInmobiliaria {
 
         propiedad=ip;
         operacion=gest;
+    }
     
 
     public OperacionInmobiliaria getOperacion(){

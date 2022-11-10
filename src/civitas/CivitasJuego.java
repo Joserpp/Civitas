@@ -108,12 +108,13 @@ public class CivitasJuego {
     }
 
     public boolean finalDelJuego(){
-        boolean condicion=false;
+        boolean bancarrota=false;
 
-        for(int i=0;i<jugadores.size();i++){
-            condicion=jugadores.get(i).enBancarrota();
+        for(int i=0;i<jugadores.size() && !bancarrota;i++){
+            bancarrota=jugadores.get(i).enBancarrota();
         }
-        return condicion;
+        
+        return bancarrota;
     }
 
     public ArrayList<Jugador> ranking(){
@@ -130,7 +131,7 @@ public class CivitasJuego {
 
     }
 
-    boolean comprar(){
+    public boolean comprar(){
 
         Jugador jugadorActual=jugadores.get(indiceJugadorActual);
         int numCasillaActual=jugadorActual.getCasillaActual();
