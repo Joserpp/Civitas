@@ -29,7 +29,7 @@ public class VistaTextual implements Vista {
   
   
            
- public  void pausa() {
+ public void pausa() {
     System.out.print ("\nPulsa una tecla");
     in.nextLine();
   }
@@ -69,6 +69,68 @@ public class VistaTextual implements Vista {
                           "\n"+tab+"Elige una opción: ",
                           tab+"Valor erróneo");
     return opcion;
+  }
+
+  public void actualiza(){
+
+    System.out.println(juegoModel.getJugadorActual().toString());
+
+    if(juegoModel.finalDelJuego())
+      juegoModel.ranking();
+
+  }
+
+  public Respuesta comprar(){
+
+    ArrayList<String> opciones= new ArrayList<>();
+    opciones.add("SI");
+    opciones.add("NO");
+
+   int respuesta=menu("Quiere comprar la calle " + juegoModel.getTablero().getCasilla(juegoModel.getJugadorActual().getCasillaActual()).toString(),opciones); 
+  
+    return(Respuesta.values()[respuesta]);
+
+  }
+
+  public OperacionInmobiliaria elegirOperacion(){
+
+    int operador=0;
+
+    operador = menu("Numero de gestion inmobiliaria utilizado: ", new ArrayList<> (Arrays.asList("-> CONSTRUIR_CASA","-> CONSTRUIR_HOTEL","-> TERMINAR"))); 
+
+    return(OperacionInmobiliaria.values()[operador]);
+  }
+
+
+  //IMPLEMENTADA POR MI
+
+  public int elegirPropiedad(){
+    
+    ArrayList<String> propiedades= new ArrayList<>();
+
+    for(int i=0;i<this.juegoModel.getJugadorActual().getPropiedades().size();i++)
+      propiedades.add(this.juegoModel.getJugadorActual().getPropiedades().get(i).getNombre());    
+    
+    int opcionOperacion =menu("¿Sobre qué propiedad quieres hacer la gestión? ", propiedades);
+    
+    return opcionOperacion;
+  
+
+  }
+
+  public void mostrarSiguienteOperacion(OperacionJuego operacion){
+
+    System.out.println(operacion.toString());
+
+
+  }
+
+  public void mostrarEventos(){
+
+    while(Diario.getInstance().eventosPendientes())
+
+      System.out.println(Diario.getInstance().leerEvento());
+
   }
 
 }

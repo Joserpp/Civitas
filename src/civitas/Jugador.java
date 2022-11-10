@@ -121,7 +121,7 @@ public class Jugador implements Comparable<Jugador>{
         return CasasPorHotel;
     }
 
-    int getCasillaActual(){
+    public int getCasillaActual(){
         return casillaActual;
     }
 
@@ -137,7 +137,7 @@ public class Jugador implements Comparable<Jugador>{
         return PasoPorSalida;
     }
 
-    protected ArrayList<Casilla> getPropiedades(){
+    public ArrayList<Casilla> getPropiedades(){
         return propiedades;
     }
 

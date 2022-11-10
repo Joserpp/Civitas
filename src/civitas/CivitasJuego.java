@@ -73,6 +73,10 @@ public class CivitasJuego {
         return jugadores.get(indiceJugadorActual);
     }
 
+    public Tablero getTablero(){
+        return tablero;
+    }
+
     private void pasarTurno(){
 
         if(indiceJugadorActual==jugadores.size()){
@@ -112,7 +116,7 @@ public class CivitasJuego {
         return condicion;
     }
 
-    private ArrayList<Jugador> ranking(){
+    public ArrayList<Jugador> ranking(){
 
         Collections.sort(jugadores,Jugador::compareTo);
         return jugadores;
