@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Random;
 
-enum EstadoJuego { INICIO_TURNO, DESPUES_AVANZAR, DESPUES_COMPRAR, DESPUES_GESTIONAR }
 
 //import javax.lang.model.util.ElementScanner6;
 
@@ -24,11 +23,13 @@ public class CivitasJuego {
 
     private Tablero tablero;
     
+    private OperacionJuego operacion;
+
     //Constructor privado
 
     public CivitasJuego (ArrayList<String> nombres,boolean debug){
         
-        jugadores=new ArrayList<Jugador>(4);
+        jugadores=new ArrayList<Jugador>();
        
         for(int i=0;i<nombres.size();i++){
             String nombre_jugador = nombres.get(i);
@@ -109,19 +110,13 @@ public class CivitasJuego {
 
     private void pasarTurno(){
 
-        if(indiceJugadorActual==jugadores.size()){
-
-            indiceJugadorActual=0;
-        }
-
-        else
-            indiceJugadorActual++;
+        indiceJugadorActual = (indiceJugadorActual+1) % 4;
 
     }
 
     public void siguientePasoCompletado(OperacionJuego operacion){
 
-        estadojuego.siguienteEstado (jugadores.get(indiceJugadorActual), estado, operacion);
+        estado=estadojuego.siguienteEstado (jugadores.get(indiceJugadorActual), estado, operacion);
 
     }
 
@@ -138,13 +133,13 @@ public class CivitasJuego {
     }
 
     public boolean finalDelJuego(){
-        boolean bancarrota=false;
-
-        for(int i=0;i<jugadores.size() && !bancarrota;i++){
-            bancarrota=jugadores.get(i).enBancarrota();
+        boolean fin = false;
+        for(Jugador jugador : jugadores){
+            if(jugador.enBancarrota() == true)
+                fin = true;
         }
         
-        return bancarrota;
+        return fin;
     }
 
     public ArrayList<Jugador> ranking(){
