@@ -1,23 +1,27 @@
 package civitas;
 import java.util.ArrayList;
 
-enum TipoCasilla { CALLE, SORPRESA, DESCANSO }
-
-enum TipoSorpresa {PAGARCOBRAR,PORCASAHOTEL}
-
 public class Casilla {
-    private TipoCasilla casilla;
+    
     private String nombre;
+    
     private float precioCompra;
     private float precioEdificar;
     private float precioBaseAlquiler;
+    
     private int numCasas;
     private int numHoteles;
+    
     private Jugador propietario;
+    private MazoSorpresas mazo;
+    private TipoCasilla casilla;
+    private Sorpresa sorpresa;
+    
+
     private static float FACTORALQUILERCALLE = 1.0f;
     private static float FACTORALQUILERCASA = 1.0f;
     private static float FACTORALQUILERHOTEL = 4.0f;
-    private MazoSorpresas mazo;
+   
 
     //Constructores de visibilidad de paquete
 /* 
