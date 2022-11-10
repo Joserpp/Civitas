@@ -6,7 +6,6 @@ import civitas.Diario;
 import civitas.OperacionJuego;
 import controladorCivitas.Respuesta;
 import civitas.OperacionInmobiliaria;
-import civitas.Jugador;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -17,7 +16,8 @@ public class VistaTextual implements Vista {
   
     
   private static String separador = "=====================";
-  
+  int iGestion   = -1;
+  int iPropiedad = -1;
   private Scanner in;
   
   CivitasJuego juegoModel;
@@ -29,7 +29,8 @@ public class VistaTextual implements Vista {
   
   
            
- public void pausa() {
+ @Override
+ public  void pausa() {
     System.out.print ("\nPulsa una tecla");
     in.nextLine();
   }
@@ -54,6 +55,7 @@ public class VistaTextual implements Vista {
       }
     } while (!ok);
 
+    System.out.println("LOOOOL");
     return numero;
   }
 
@@ -70,67 +72,64 @@ public class VistaTextual implements Vista {
                           tab+"Valor erróneo");
     return opcion;
   }
-
+  
+  @Override
   public void actualiza(){
-
-    System.out.println(juegoModel.getJugadorActual().toString());
-
-    if(juegoModel.finalDelJuego())
-      juegoModel.ranking();
-
+      System.out.println(this.juegoModel.getJugadorActual().toString());
+      if(this.juegoModel.finalDelJuego())
+          this.juegoModel.ranking();
+    
   }
-
+      
+     
+  @Override
   public Respuesta comprar(){
-
-    ArrayList<String> opciones= new ArrayList<>();
-    opciones.add("SI");
-    opciones.add("NO");
-
-   int respuesta=menu("Quiere comprar la calle " + juegoModel.getTablero().getCasilla(juegoModel.getJugadorActual().getCasillaActual()).toString(),opciones); 
-  
-    return(Respuesta.values()[respuesta]);
-
+    
+    int indice = juegoModel.getJugadorActual().getCasillaActual();
+    String casillaActual = juegoModel.getTablero().getCasilla(indice).toString();
+      
+    int opcion = menu ("Has llegado a la casilla\n" + casillaActual + "\n¿Quieres comprarla?",
+                        new ArrayList<> (Arrays.asList("SI","NO") ) 
+                      );
+    System.out.println(""+opcion);
+    return (Respuesta.values()[opcion]);
   }
-
+  
+  @Override
   public OperacionInmobiliaria elegirOperacion(){
-
-    int operador=0;
-
-    operador = menu("Numero de gestion inmobiliaria utilizado: ", new ArrayList<> (Arrays.asList("-> CONSTRUIR_CASA","-> CONSTRUIR_HOTEL","-> TERMINAR"))); 
-
-    return(OperacionInmobiliaria.values()[operador]);
+   
+      int opcionOperacion = menu ("¿Qué número de gestión inmobiliara quieres realizar?",
+                        new ArrayList<> (Arrays.asList("-> CONSTRUIR_CASA", 
+                                                       "-> CONSTRUIR_HOTEL",
+                                                       "-> TERMINAR")
+                        )
+      );
+      
+      return OperacionInmobiliaria.values()[opcionOperacion];
   }
-
-
-  //IMPLEMENTADA POR MI
-
-  public int elegirPropiedad(){
-    
-    ArrayList<String> propiedades= new ArrayList<>();
-
-    for(int i=0;i<this.juegoModel.getJugadorActual().getPropiedades().size();i++)
-      propiedades.add(this.juegoModel.getJugadorActual().getPropiedades().get(i).getNombre());    
-    
-    int opcionOperacion =menu("¿Sobre qué propiedad quieres hacer la gestión? ", propiedades);
-    
-    return opcionOperacion;
   
-
+  @Override
+  public int elegirPropiedad(){
+    int numProps   = this.juegoModel.getJugadorActual().getPropiedades().size();
+    System.out.println("akkaaaka: "+numProps);
+    int opcionProp = this.leeEntero(numProps, 
+                       "¿Sobre qué propiedad quieres hacer la gestión? ", 
+                        "Valor Erróneo");
+    
+    System.out.println("CABRAS "+ opcionProp);
+    return opcionProp;
   }
-
+  
+  @Override
   public void mostrarSiguienteOperacion(OperacionJuego operacion){
-
-    System.out.println(operacion.toString());
-
-
+      String opera = "Siguiente operacion: " + operacion.toString();
+      System.out.println(opera);
   }
-
+  
+  @Override
   public void mostrarEventos(){
-
-    while(Diario.getInstance().eventosPendientes())
-
-      System.out.println(Diario.getInstance().leerEvento());
-
+      while(Diario.getInstance().eventosPendientes())
+          System.out.println(Diario.getInstance().leerEvento());
   }
 
 }

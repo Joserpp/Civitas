@@ -12,7 +12,7 @@ public class Jugador implements Comparable<Jugador>{
     private boolean puedeComprar;
     private float saldo;
     private static float SaldoInicial=7500;
-    private ArrayList<Casilla> propiedades=new ArrayList<Casilla>(0);
+    private ArrayList<Casilla> propiedades=new ArrayList<Casilla>();
 
     int cantidadCasasHoteles(){
         int cantidadcasashoteles=0;
@@ -151,8 +151,7 @@ public class Jugador implements Comparable<Jugador>{
 
     Jugador(String n){
         nombre = n;
-        casillaActual = 0;
-        puedeComprar = false;
+        
         saldo = SaldoInicial;
     }
 

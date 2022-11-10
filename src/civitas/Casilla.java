@@ -17,8 +17,10 @@ public class Casilla {
     private static float FACTORALQUILERCALLE = 1.0f;
     private static float FACTORALQUILERCASA = 1.0f;
     private static float FACTORALQUILERHOTEL = 4.0f;
+    private MazoSorpresas mazo;
 
     //Constructores de visibilidad de paquete
+/* 
     public Casilla(String n){
         init();
         casilla = TipoCasilla.DESCANSO;
@@ -38,17 +40,43 @@ public class Casilla {
         init();
         casilla = TipoCasilla.SORPRESA;
         nombre = n;
+        this.mazo=mazo;
     }   
+*/
+    Casilla( TipoCasilla tipo , String nombre)
+    {
+        init();
+        this.casilla = tipo;
+        this.nombre = nombre;
+    }
 
+// Constructor para casillas de tipo CALLE
+    Casilla( TipoCasilla tipo, String nombre, float precioCompra, 
+        float precioEdificar, float precioBaseAlquiler)
+    {
+        init();
+        this.casilla = tipo;
+        this.nombre = nombre;
+        this.precioCompra = precioCompra;
+        this.precioEdificar = precioEdificar;
+        this.precioBaseAlquiler = precioBaseAlquiler;
+    }
+
+// Constructor para casillas de tipo SORPRESA
+    Casilla( TipoCasilla tipo, String nombre, MazoSorpresas mazo)
+    {
+        init();
+        this.casilla = tipo;
+        this.nombre = nombre;
+        this.mazo = mazo;
+    }
     private void init(){
-        casilla = null;
-        nombre = " ";
         precioCompra = 0;
         precioEdificar = 0;
         precioBaseAlquiler = 0;
         numCasas = 0;
         numHoteles = 0;
-        propietario = null;
+        propietario = new Jugador("");
     }
 
     public int cantidadCasasHoteles(){
@@ -175,11 +203,23 @@ public class Casilla {
             recibeJugador_calle(iactual, todos);
         }
         else if(casilla == TipoCasilla.SORPRESA){
-            //recibeJugador_sorpresa(iactual, todos);
+            recibeJugador_sorpresa(iactual, todos);
         }
         else if(casilla == TipoCasilla.DESCANSO){
             informe(iactual, todos);
         }
     }
+
+    private void recibeJugador_sorpresa(int iactual, ArrayList<Jugador> todos)
+    {
+        // 1
+        Sorpresa sorpresa = mazo.siguiente();
+        // 2
+        informe(iactual,todos);
+        // 3
+        sorpresa.aplicarAJugador(iactual,todos);
+        
+    }
+
 } 
 

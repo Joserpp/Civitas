@@ -26,7 +26,7 @@ public class CivitasJuego {
     
     //Constructor privado
 
-    private CivitasJuego (ArrayList<String> nombres,boolean debug){
+    public CivitasJuego (ArrayList<String> nombres,boolean debug){
         
         jugadores=new ArrayList<Jugador>(4);
        
@@ -38,7 +38,7 @@ public class CivitasJuego {
             jugadores.add(jugador);
 
         }
-
+        estadojuego = new GestorEstados();
         estado=estadojuego.estadoInicial();
         
         Dado.getInstance().setDebug(debug);
@@ -59,13 +59,42 @@ public class CivitasJuego {
 
     private void inicializaTablero(MazoSorpresas mazo){
 
-        tablero.añadeCasilla(new Casilla("Puro relax"));
+        tablero.añadeCasilla(new Casilla(TipoCasilla.CALLE, "Velázquez", 60, 20, 50));
+        tablero.añadeCasilla(new Casilla(TipoCasilla.CALLE, "Salamanca", 80, 30, 100));
+        tablero.añadeCasilla(new Casilla(TipoCasilla.CALLE,"Castellana", 100, 40, 200));
+        tablero.añadeCasilla(new Casilla(TipoCasilla.CALLE,"Tirso de M.", 120, 50, 300));
+        tablero.añadeCasilla(new Casilla(TipoCasilla.SORPRESA,"Sorpresa", mazo));
+        tablero.añadeCasilla(new Casilla(TipoCasilla.CALLE,"Lavapiés", 140, 60, 400));
+        tablero.añadeCasilla(new Casilla(TipoCasilla.CALLE,"Goya", 150, 70, 500));
+        tablero.añadeCasilla(new Casilla(TipoCasilla.SORPRESA,"Sorpresa", mazo));
+        tablero.añadeCasilla(new Casilla(TipoCasilla.CALLE,"Mataelpino", 200, 80, 600));
+        tablero.añadeCasilla(new Casilla(TipoCasilla.DESCANSO,"Puro relax"));
+        tablero.añadeCasilla(new Casilla(TipoCasilla.CALLE,"Leganitos", 220, 90, 700));
+        tablero.añadeCasilla(new Casilla(TipoCasilla.CALLE,"Serrano", 240, 100, 800));
+        tablero.añadeCasilla(new Casilla(TipoCasilla.CALLE,"P. del Prado", 260, 110, 900));
+        tablero.añadeCasilla(new Casilla(TipoCasilla.SORPRESA,"Sorpresa", mazo));
+        tablero.añadeCasilla(new Casilla(TipoCasilla.CALLE,"Valdelatas", 280, 120, 1000));
+        tablero.añadeCasilla(new Casilla(TipoCasilla.CALLE,"Méndez A.", 300, 130, 1100));
+        tablero.añadeCasilla(new Casilla(TipoCasilla.SORPRESA,"Sorpresa", mazo));
+        tablero.añadeCasilla(new Casilla(TipoCasilla.CALLE,"O'Donell", 350, 140, 1200));
+        tablero.añadeCasilla(new Casilla(TipoCasilla.CALLE,"San Jerónimo", 400, 150, 1300));
 
     }
 
     private void inicializaMazoSorpresa(){
 
-        mazo.alMazo(new Sorpresa(TipoSorpresa.PAGARCOBRAR, "prueba", 100));
+        mazo.alMazo(new Sorpresa(TipoSorpresa.PAGARCOBRAR,"Sorpresa_1", 100));
+        mazo.alMazo(new Sorpresa(TipoSorpresa.PAGARCOBRAR,"Sorpresa_1", 500));
+        mazo.alMazo(new Sorpresa(TipoSorpresa.PAGARCOBRAR,"Sorpresa_1", 1000));
+        mazo.alMazo(new Sorpresa(TipoSorpresa.PAGARCOBRAR,"Sorpresa_1", -100));
+        mazo.alMazo(new Sorpresa(TipoSorpresa.PAGARCOBRAR,"Sorpresa_1", -500));
+        mazo.alMazo(new Sorpresa(TipoSorpresa.PAGARCOBRAR,"Sorpresa_1", -1000));
+        mazo.alMazo(new Sorpresa(TipoSorpresa.PORCASAHOTEL,"Sorpresa_2", 100));
+        mazo.alMazo(new Sorpresa(TipoSorpresa.PORCASAHOTEL,"Sorpresa_2", 1000));
+        mazo.alMazo(new Sorpresa(TipoSorpresa.PORCASAHOTEL,"Sorpresa_2", -100));
+        mazo.alMazo(new Sorpresa(TipoSorpresa.PORCASAHOTEL,"Sorpresa_2", -1000));
+        mazo.alMazo(new Sorpresa(TipoSorpresa.PORCASAHOTEL,"Sorpresa_3", 0));
+        mazo.alMazo(new Sorpresa(TipoSorpresa.PORCASAHOTEL,"Sorpresa_3", 0));
     }
 
     public Jugador getJugadorActual(){
