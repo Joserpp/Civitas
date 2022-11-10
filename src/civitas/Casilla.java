@@ -1,4 +1,5 @@
 package civitas;
+
 import java.util.ArrayList;
 
 public class Casilla {
@@ -16,7 +17,7 @@ public class Casilla {
     private MazoSorpresas mazo;
     private TipoCasilla casilla;
     private Sorpresa sorpresa;
-    
+
 
     private static float FACTORALQUILERCALLE = 1.0f;
     private static float FACTORALQUILERCASA = 1.0f;
@@ -83,6 +84,8 @@ public class Casilla {
         propietario = new Jugador("");
     }
 
+    //Consultores
+
     public int cantidadCasasHoteles(){
 
         return(numCasas+numHoteles);
@@ -124,6 +127,9 @@ public class Casilla {
                     + numCasas + ", Hoteles: " + numHoteles + ", Tipo: " + casilla;
         return casilla_s;
     }
+    
+    //Calculo
+    
     public void tramitarAlquiler(Jugador jugador){
         if(this.tienePropietario() && !this.esEsteElPropietario(jugador))
          {   jugador.pagaAlquiler(this.getPrecioAlquilerCompleto());

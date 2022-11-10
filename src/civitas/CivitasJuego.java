@@ -41,9 +41,10 @@ public class CivitasJuego {
         estadojuego = new GestorEstados();
         estado=estadojuego.estadoInicial();
         
-        Dado.getInstance().setDebug(debug);
+        Dado dado = Dado.getInstance(); 
+        dado.setDebug(debug);
 
-        indiceJugadorActual=Dado.getInstance().quienEmpieza(jugadores.size());
+        indiceJugadorActual=dado.quienEmpieza(4);
 
         mazo=new MazoSorpresas(debug);
 
