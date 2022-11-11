@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 public class Casilla {
     
+    
+    private static float FACTORALQUILERCALLE = 1.0f;
+    private static float FACTORALQUILERCASA = 1.0f;
+    private static float FACTORALQUILERHOTEL = 4.0f;
+
     private String nombre;
     
     private float precioCompra;
@@ -15,13 +20,10 @@ public class Casilla {
     
     private Jugador propietario;
     private MazoSorpresas mazo;
-    private TipoCasilla casilla;
+    private TipoCasilla tipo;
     private Sorpresa sorpresa;
 
 
-    private static float FACTORALQUILERCALLE = 1.0f;
-    private static float FACTORALQUILERCASA = 1.0f;
-    private static float FACTORALQUILERHOTEL = 4.0f;
    
 
     //Constructores de visibilidad de paquete
@@ -51,7 +53,7 @@ public class Casilla {
     Casilla( TipoCasilla tipo , String nombre)
     {
         init();
-        this.casilla = tipo;
+        this.tipo = tipo;
         this.nombre = nombre;
     }
 
@@ -60,7 +62,7 @@ public class Casilla {
         float precioEdificar, float precioBaseAlquiler)
     {
         init();
-        this.casilla = tipo;
+        this.tipo = tipo;
         this.nombre = nombre;
         this.precioCompra = precioCompra;
         this.precioEdificar = precioEdificar;
@@ -71,7 +73,7 @@ public class Casilla {
     Casilla( TipoCasilla tipo, String nombre, MazoSorpresas mazo)
     {
         init();
-        this.casilla = tipo;
+        this.tipo = tipo;
         this.nombre = nombre;
         this.mazo = mazo;
     }
@@ -92,7 +94,7 @@ public class Casilla {
     }
 
     public TipoCasilla getTipoCasilla(){
-        return casilla;
+        return tipo;
     }
     
     public String getNombre(){
@@ -109,7 +111,10 @@ public class Casilla {
     
     public float getPrecioAlquilerCompleto(){
         float precio;
-        precio = precioBaseAlquiler * (1 + numCasas + (numHoteles * 4));
+        precio = precioBaseAlquiler * (FACTORALQUILERCALLE+
+        numCasas*FACTORALQUILERCASA+
+        numHoteles*FACTORALQUILERHOTEL);
+        
         return precio;
     }
     
@@ -124,7 +129,7 @@ public class Casilla {
         String casilla_s = nombre;
         casilla_s += " Compra: " + precioCompra + ", Edificar: " + precioEdificar
                     +", Alquiler base: " + precioBaseAlquiler + ", Casas: "
-                    + numCasas + ", Hoteles: " + numHoteles + ", Tipo: " + casilla;
+                    + numCasas + ", Hoteles: " + numHoteles + ", Tipo: " + tipo;
         return casilla_s;
     }
     
@@ -145,10 +150,7 @@ public class Casilla {
 
     }
     public boolean tienePropietario(){
-        if(propietario == null)
-            return false;
-        else
-            return true;
+        return (!"".equals(propietario.getNombre()));
     }
 
     boolean comprar(Jugador jugador){
@@ -209,13 +211,13 @@ public class Casilla {
     }
 
     void recibeJugador(int iactual, ArrayList<Jugador> todos){
-        if(casilla == TipoCasilla.CALLE){
+        if(tipo == TipoCasilla.CALLE){
             recibeJugador_calle(iactual, todos);
         }
-        else if(casilla == TipoCasilla.SORPRESA){
+        else if(tipo == TipoCasilla.SORPRESA){
             recibeJugador_sorpresa(iactual, todos);
         }
-        else if(casilla == TipoCasilla.DESCANSO){
+        else if(tipo == TipoCasilla.DESCANSO){
             informe(iactual, todos);
         }
     }
