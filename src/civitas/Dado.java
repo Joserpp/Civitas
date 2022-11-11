@@ -30,23 +30,19 @@ public class Dado {
         return instance;
     }
     
-    int tirar (){
-        int devuelve;
-        random=new Random(6);
-        if(debug==false)
-            devuelve=1;
-        else
-            devuelve=(int)(random.nextDouble()*6+1);
+    int tirar()
+    {
+        if(debug==false) 
+            ultimoResultado = random.nextInt(6) + 1;
+        else ultimoResultado = 1;
         
-        ultimoResultado=devuelve;
-        
-        return devuelve;
+        return ultimoResultado;
     }
     
     int quienEmpieza(int n){
         
         int empieza;
-        empieza=(int)(random.nextDouble()*(n-1));
+        empieza=(int)(random.nextInt(n) );
 
         
         return empieza;
@@ -56,9 +52,9 @@ public class Dado {
         debug=d;
         
         if(debug==true)
-            Diario.getInstance().ocurreEvento("Se ha puesto en modo aumenta 1 a 1");
+            Diario.getInstance().ocurreEvento("Se ha activado el modo debug del dado");
         else 
-            Diario.getInstance().ocurreEvento("Se ha puesto en modo aumenta mas de 1");
+            Diario.getInstance().ocurreEvento("Se ha desactivado el modo debug del dado");
         
         }
     

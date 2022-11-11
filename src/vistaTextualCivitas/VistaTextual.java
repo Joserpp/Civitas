@@ -111,12 +111,12 @@ public class VistaTextual implements Vista {
   @Override
   public int elegirPropiedad(){
     int numProps   = this.juegoModel.getJugadorActual().getPropiedades().size();
-    System.out.println("akkaaaka: "+numProps);
+    
     int opcionProp = this.leeEntero(numProps, 
                        "¿Sobre qué propiedad quieres hacer la gestión? ", 
                         "Valor Erróneo");
     
-    System.out.println("CABRAS "+ opcionProp);
+   
     return opcionProp;
   }
   

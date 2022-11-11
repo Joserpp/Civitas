@@ -29,17 +29,17 @@ public class Controlador {
             vista.pausa();
             OperacionJuego sigPaso = juegoModel.siguientePaso();
             vista.mostrarSiguienteOperacion(sigPaso);
-            if(sigPaso != OperacionJuego.PASAR_TURNO){
+            if(sigPaso != OperacionJuego.PASAR_TURNO)
               vista.mostrarEventos();
-            }
+            
 
             switch(sigPaso){
                 case COMPRAR:
                     if(vista.comprar()==Respuesta.SI){
-                        System.out.println("karmaland");
+                        
                         juegoModel.comprar();
                     }
-                    System.out.println("karmaland2");
+                    
                     juegoModel.siguientePasoCompletado(sigPaso);
                 break;
                 
