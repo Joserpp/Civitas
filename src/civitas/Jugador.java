@@ -53,10 +53,8 @@ public class Jugador implements Comparable <Jugador> {
         if(puedeComprar){
             // 1
             float precio = titulo.getPrecioCompra();
-            System.out.println("leyenda");
             if(puedoGastar(precio)){
                 // 2
-                System.out.println("Bufon");
                 result = titulo.comprar(this);
                 // 3
                 propiedades.add(titulo);
@@ -331,7 +329,8 @@ public class Jugador implements Comparable <Jugador> {
             cadena += "no tiene propiedades";
         else for(Casilla propiedad: propiedades)
             cadena += "\t"+ propiedad.getNombre()+ "\n";
-        cadena += "\nCasilla actual: "+this.casillaActual;
+        cadena += "\nPresupuesto: " + this.saldo;    
+        cadena += "\nCasilla actual: "+(this.casillaActual+1);
         
         return cadena;
     }

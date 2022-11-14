@@ -10,8 +10,7 @@ public class Tablero {
     private void init(){
         casillas = new ArrayList<Casilla>(0);
         porSalida = false;
-        //Casilla Salida = new Casilla(TipoCasilla.CALLE, "Salida", 0, 0, 0);
-        //casillas.add(Salida);
+        
     }
 
     public Tablero (){
@@ -27,8 +26,11 @@ public class Tablero {
     }
 
     boolean computarPasoPorSalida(){
+        boolean condicion=porSalida;
+        
         porSalida = false;
-        return porSalida;
+        
+        return condicion;
         
     }
 
@@ -52,8 +54,11 @@ public class Tablero {
 
         nuevaPos = actual + tirada;
 
-        if (nuevaPos > casillas.size())
-            nuevaPos = casillas.size()%nuevaPos;
+        if (nuevaPos > casillas.size()){
+
+            nuevaPos = nuevaPos % casillas.size();
+            porSalida = true;
+        }
 
         return nuevaPos;
     }

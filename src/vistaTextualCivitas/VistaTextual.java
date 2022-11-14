@@ -55,7 +55,6 @@ public class VistaTextual implements Vista {
       }
     } while (!ok);
 
-    System.out.println("LOOOOL");
     return numero;
   }
 
@@ -91,7 +90,6 @@ public class VistaTextual implements Vista {
     int opcion = menu ("Has llegado a la casilla\n" + casillaActual + "\n¿Quieres comprarla?",
                         new ArrayList<> (Arrays.asList("SI","NO") ) 
                       );
-    System.out.println(""+opcion);
     return (Respuesta.values()[opcion]);
   }
   

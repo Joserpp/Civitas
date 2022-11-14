@@ -23,33 +23,6 @@ public class Casilla {
     private TipoCasilla tipo;
     private Sorpresa sorpresa;
 
-
-   
-
-    //Constructores de visibilidad de paquete
-/* 
-    public Casilla(String n){
-        init();
-        casilla = TipoCasilla.DESCANSO;
-        nombre = n;
-    }
-
-    public Casilla (String titulo, float pC, float pE, float pBA){
-        init();
-        casilla = TipoCasilla.CALLE;
-        nombre = titulo;
-        precioCompra = pC;
-        precioEdificar = pE;
-        precioBaseAlquiler = pBA;
-    }
-
-    public Casilla (String n, MazoSorpresas mazo){
-        init();
-        casilla = TipoCasilla.SORPRESA;
-        nombre = n;
-        this.mazo=mazo;
-    }   
-*/
     Casilla( TipoCasilla tipo , String nombre)
     {
         init();
@@ -195,8 +168,8 @@ public class Casilla {
 
     void informe (int actual, ArrayList<Jugador>todos){
 
-        Diario.getInstance().ocurreEvento(todos.get(actual) + 
-                                          "ha caido en esta casilla cuyos datos son: "
+        Diario.getInstance().ocurreEvento(" El jugador: " + todos.get(actual).getNombre() + 
+                                          " ha caido en esta casilla cuyos datos son: "
                                            + this.toString());
     }
 
