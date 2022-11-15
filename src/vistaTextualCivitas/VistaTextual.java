@@ -26,10 +26,7 @@ public class VistaTextual implements Vista {
     in = new Scanner (System.in);
     this.juegoModel=juegoModel;
   }
-  
-  
-           
- @Override
+
  public  void pausa() {
     System.out.print ("\nPulsa una tecla");
     in.nextLine();
@@ -71,17 +68,14 @@ public class VistaTextual implements Vista {
                           tab+"Valor erróneo");
     return opcion;
   }
-  
-  @Override
+
   public void actualiza(){
       System.out.println(this.juegoModel.getJugadorActual().toString());
       if(this.juegoModel.finalDelJuego())
           this.juegoModel.ranking();
     
   }
-      
-     
-  @Override
+
   public Respuesta comprar(){
     
     int indice = juegoModel.getJugadorActual().getCasillaActual();
@@ -92,8 +86,7 @@ public class VistaTextual implements Vista {
                       );
     return (Respuesta.values()[opcion]);
   }
-  
-  @Override
+
   public OperacionInmobiliaria elegirOperacion(){
    
       int opcionOperacion = menu ("¿Qué número de gestión inmobiliara quieres realizar?",
@@ -106,7 +99,6 @@ public class VistaTextual implements Vista {
       return OperacionInmobiliaria.values()[opcionOperacion];
   }
   
-  @Override
   public int elegirPropiedad(){
     int numProps   = this.juegoModel.getJugadorActual().getPropiedades().size();
     
@@ -118,13 +110,11 @@ public class VistaTextual implements Vista {
     return opcionProp;
   }
   
-  @Override
   public void mostrarSiguienteOperacion(OperacionJuego operacion){
       String opera = "Siguiente operacion: " + operacion.toString();
       System.out.println(opera);
   }
   
-  @Override
   public void mostrarEventos(){
       while(Diario.getInstance().eventosPendientes())
           System.out.println(Diario.getInstance().leerEvento());

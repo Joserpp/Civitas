@@ -1,13 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package civitas;
 import java.util.ArrayList;
-/**
- *
- * @author carmenxufdz
- */
+
 public class Jugador implements Comparable <Jugador> {
     
     protected static int CasasMax = 4;
@@ -320,7 +313,7 @@ public class Jugador implements Comparable <Jugador> {
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////    
 // SERIALIZA //
-    @Override
+    
     public String toString()
     {
         String cadena = "\nJugador actual: " + this.nombre + "\n";

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controladorCivitas;
 
 import civitas.CivitasJuego;
@@ -10,10 +6,7 @@ import vistaTextualCivitas.VistaTextual;
 import civitas.OperacionInmobiliaria;
 import civitas.Jugador;
 import java.util.ArrayList;
-/**
- *
- * @author carmenxufdz
- */
+
 public class Controlador {
     private CivitasJuego juegoModel;
     private VistaTextual vista;
