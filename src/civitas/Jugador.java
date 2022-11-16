@@ -42,7 +42,6 @@ public class Jugador implements Comparable <Jugador> {
     {
         boolean result = false;
         
-        puedeComprar=true;
         if(puedeComprar){
             // 1
             float precio = titulo.getPrecioCompra();
@@ -191,6 +190,7 @@ public class Jugador implements Comparable <Jugador> {
         this.nombre = nombre;
         propiedades = new ArrayList<>();
         saldo = SaldoInicial;
+        puedeComprar = true;
     }
 
     protected Jugador(Jugador otro)
@@ -198,6 +198,7 @@ public class Jugador implements Comparable <Jugador> {
         this.nombre = otro.nombre;
         this.propiedades = otro.propiedades;
         this.saldo = otro.saldo;
+        this.puedeComprar = otro.puedeComprar;
     }
 
 ////////////////////////////////////////////////////////////////////////////////
