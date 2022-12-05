@@ -150,6 +150,10 @@ public class CasillaCalle extends Casilla {
         return cad;
     }
 
+    public void actualizaPropietarioPorConversion(JugadorEspeculador jugador){
+
+        propietario = jugador;
+    }
 }
 
 

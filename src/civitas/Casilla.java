@@ -28,7 +28,5 @@ public class Casilla {
                                           " ha caido en esta casilla cuyos datos son: "
                                            + this.toString());
     }
-
-        
 } 
 

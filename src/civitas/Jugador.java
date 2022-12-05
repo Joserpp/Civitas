@@ -14,7 +14,7 @@ public class Jugador implements Comparable <Jugador> {
     private String nombre;
     private boolean puedeComprar;
     private float saldo;
-    private ArrayList<CasillaCalle> propiedades;
+    ArrayList<CasillaCalle> propiedades;
     
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
