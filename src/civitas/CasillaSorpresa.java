@@ -27,7 +27,7 @@ public class CasillaSorpresa extends Casilla{
         // 1
         Sorpresa sorpresa = mazo.siguiente();
         // 2
-        informe(actual,todos);
+        super.informe(actual,todos);
         // 3
         sorpresa.aplicarAJugador(actual,todos);
         

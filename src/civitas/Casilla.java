@@ -28,5 +28,8 @@ public class Casilla {
                                           " ha caido en esta casilla cuyos datos son: "
                                            + this.toString());
     }
+    void recibeJugador(int actual, ArrayList<Jugador>todos){
+        informe(actual, todos);
+    }
 } 
 

@@ -33,7 +33,7 @@ public class CasillaCalle extends Casilla {
         return numCasas+numHoteles;
     }
 
-    public int getNumcasas(){
+    public int getNumCasas(){
 
         return numCasas;
     }
@@ -120,7 +120,7 @@ public class CasillaCalle extends Casilla {
     }
 
     void recibeJugador(int iactual, ArrayList<Jugador>todos){
-        informe(iactual, todos);
+        super.informe(iactual, todos);
         Jugador jugador = todos.get(iactual);
         if(!tienePropietario()){
             jugador.puedeComprarCasilla();

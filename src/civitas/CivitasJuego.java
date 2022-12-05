@@ -61,42 +61,42 @@ public class CivitasJuego {
 
     private void inicializaTablero(MazoSorpresas mazo){
 
-        tablero.añadeCasilla(new Casilla(TipoCasilla.CALLE, "Velázquez", 60, 20, 50));
-        tablero.añadeCasilla(new Casilla(TipoCasilla.CALLE, "Salamanca", 80, 30, 100));
-        tablero.añadeCasilla(new Casilla(TipoCasilla.CALLE,"Castellana", 100, 40, 200));
-        tablero.añadeCasilla(new Casilla(TipoCasilla.CALLE,"Tirso de M.", 120, 50, 300));
-        tablero.añadeCasilla(new Casilla(TipoCasilla.SORPRESA,"Sorpresa", mazo));
-        tablero.añadeCasilla(new Casilla(TipoCasilla.CALLE,"Lavapiés", 140, 60, 400));
-        tablero.añadeCasilla(new Casilla(TipoCasilla.CALLE,"Goya", 150, 70, 500));
-        tablero.añadeCasilla(new Casilla(TipoCasilla.SORPRESA,"Sorpresa", mazo));
-        tablero.añadeCasilla(new Casilla(TipoCasilla.CALLE,"Mataelpino", 200, 80, 600));
-        tablero.añadeCasilla(new Casilla(TipoCasilla.DESCANSO,"Puro relax"));
-        tablero.añadeCasilla(new Casilla(TipoCasilla.CALLE,"Leganitos", 220, 90, 700));
-        tablero.añadeCasilla(new Casilla(TipoCasilla.CALLE,"Serrano", 240, 100, 800));
-        tablero.añadeCasilla(new Casilla(TipoCasilla.CALLE,"P. del Prado", 260, 110, 900));
-        tablero.añadeCasilla(new Casilla(TipoCasilla.SORPRESA,"Sorpresa", mazo));
-        tablero.añadeCasilla(new Casilla(TipoCasilla.CALLE,"Valdelatas", 280, 120, 1000));
-        tablero.añadeCasilla(new Casilla(TipoCasilla.CALLE,"Méndez A.", 300, 130, 1100));
-        tablero.añadeCasilla(new Casilla(TipoCasilla.SORPRESA,"Sorpresa", mazo));
-        tablero.añadeCasilla(new Casilla(TipoCasilla.CALLE,"O'Donell", 350, 140, 1200));
-        tablero.añadeCasilla(new Casilla(TipoCasilla.CALLE,"San Jerónimo", 400, 150, 1300));
+        tablero.añadeCasilla(new CasillaCalle("Velázquez", 60, 20, 50));
+        tablero.añadeCasilla(new CasillaCalle( "Salamanca", 80, 30, 100));
+        tablero.añadeCasilla(new CasillaCalle("Castellana", 100, 40, 200));
+        tablero.añadeCasilla(new CasillaCalle("Tirso de M.", 120, 50, 300));
+        tablero.añadeCasilla(new CasillaSorpresa("Sorpresa", mazo));
+        tablero.añadeCasilla(new CasillaCalle("Lavapiés", 140, 60, 400));
+        tablero.añadeCasilla(new CasillaCalle("Goya", 150, 70, 500));
+        tablero.añadeCasilla(new CasillaSorpresa("Sorpresa", mazo));
+        tablero.añadeCasilla(new CasillaCalle("Mataelpino", 200, 80, 600));
+        tablero.añadeCasilla(new Casilla("Puro relax"));
+        tablero.añadeCasilla(new CasillaCalle("Leganitos", 220, 90, 700));
+        tablero.añadeCasilla(new CasillaCalle("Serrano", 240, 100, 800));
+        tablero.añadeCasilla(new CasillaCalle("P. del Prado", 260, 110, 900));
+        tablero.añadeCasilla(new CasillaSorpresa("Sorpresa", mazo));
+        tablero.añadeCasilla(new CasillaCalle("Valdelatas", 280, 120, 1000));
+        tablero.añadeCasilla(new CasillaCalle("Méndez A.", 300, 130, 1100));
+        tablero.añadeCasilla(new CasillaSorpresa("Sorpresa", mazo));
+        tablero.añadeCasilla(new CasillaCalle("O'Donell", 350, 140, 1200));
+        tablero.añadeCasilla(new CasillaCalle("San Jerónimo", 400, 150, 1300));
 
     }
 
     private void inicializaMazoSorpresa(){
 
-        mazo.alMazo(new Sorpresa(TipoSorpresa.PAGARCOBRAR,"Sorpresa_1", 100));
-        mazo.alMazo(new Sorpresa(TipoSorpresa.PAGARCOBRAR,"Sorpresa_1", 500));
-        mazo.alMazo(new Sorpresa(TipoSorpresa.PAGARCOBRAR,"Sorpresa_1", 1000));
-        mazo.alMazo(new Sorpresa(TipoSorpresa.PAGARCOBRAR,"Sorpresa_1", -100));
-        mazo.alMazo(new Sorpresa(TipoSorpresa.PAGARCOBRAR,"Sorpresa_1", -500));
-        mazo.alMazo(new Sorpresa(TipoSorpresa.PAGARCOBRAR,"Sorpresa_1", -1000));
-        mazo.alMazo(new Sorpresa(TipoSorpresa.PORCASAHOTEL,"Sorpresa_2", 100));
-        mazo.alMazo(new Sorpresa(TipoSorpresa.PORCASAHOTEL,"Sorpresa_2", 1000));
-        mazo.alMazo(new Sorpresa(TipoSorpresa.PORCASAHOTEL,"Sorpresa_2", -100));
-        mazo.alMazo(new Sorpresa(TipoSorpresa.PORCASAHOTEL,"Sorpresa_2", -1000));
-        mazo.alMazo(new Sorpresa(TipoSorpresa.PORCASAHOTEL,"Sorpresa_3", 0));
-        mazo.alMazo(new Sorpresa(TipoSorpresa.PORCASAHOTEL,"Sorpresa_3", 0));
+        mazo.alMazo(new SorpresaPagarCobrar("Sorpresa_1", 100));
+        mazo.alMazo(new SorpresaPagarCobrar("Sorpresa_1", 500));
+        mazo.alMazo(new SorpresaPagarCobrar("Sorpresa_1", 1000));
+        mazo.alMazo(new SorpresaPagarCobrar("Sorpresa_1", -100));
+        mazo.alMazo(new SorpresaPagarCobrar("Sorpresa_1", -500));
+        mazo.alMazo(new SorpresaPagarCobrar("Sorpresa_1", -1000));
+        mazo.alMazo(new SorpresaPorCasaHotel("Sorpresa_2", 100));
+        mazo.alMazo(new SorpresaPorCasaHotel("Sorpresa_2", 1000));
+        mazo.alMazo(new SorpresaPorCasaHotel("Sorpresa_2", -100));
+        mazo.alMazo(new SorpresaPorCasaHotel("Sorpresa_2", -1000));
+        mazo.alMazo(new SorpresaPorCasaHotel("Sorpresa_3", 0));
+        mazo.alMazo(new SorpresaPorCasaHotel("Sorpresa_3", 0));
     }
 
     public Jugador getJugadorActual(){

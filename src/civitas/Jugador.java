@@ -25,8 +25,8 @@ public class Jugador implements Comparable <Jugador> {
         
         for (Casilla propiedad : propiedades){
 
-            cantidad = cantidad + propiedad.getNumCasas() +
-                        propiedad.getNumHoteles();
+            cantidad = cantidad + ((CasillaCalle)propiedad).getNumCasas() +
+                        ((CasillaCalle)propiedad).getNumHoteles();
         }
         
         return cantidad;
@@ -44,12 +44,12 @@ public class Jugador implements Comparable <Jugador> {
         
         if(puedeComprar){
             // 1
-            float precio = titulo.getPrecioCompra();
+            float precio = ((CasillaCalle)titulo).getPrecioCompra();
             if(puedoGastar(precio)){
                 // 2
-                result = titulo.comprar(this);
+                result = ((CasillaCalle)titulo).comprar(this);
                 // 3
-                propiedades.add(titulo);
+                propiedades.add((CasillaCalle)titulo);
                 
                 // 4
                 Diario.getInstance().ocurreEvento(("El jugador " + this.getNombre() + 
@@ -85,7 +85,7 @@ public class Jugador implements Comparable <Jugador> {
             boolean puedoEdificar = puedoEdificarCasa(propiedad);                
             if(puedoEdificar){
                 // 5 
-                result = propiedad.construirCasa(this);
+                result = ((CasillaCalle)propiedad).construirCasa(this);
                 Diario.getInstance().ocurreEvento("El jugador " + nombre + 
                         " contruye casa en la propiedad " + ip);
                  
@@ -107,9 +107,9 @@ public class Jugador implements Comparable <Jugador> {
             
             if(puedoEdificarHotel){
                 // 3
-                result = propiedad.construirHotel(this);
+                result = ((CasillaCalle)propiedad).construirHotel(this);
                 // 4
-                propiedad.derruirCasas(CasasPorHotel, this);
+                ((CasillaCalle)propiedad).derruirCasas(CasasPorHotel, this);
                 // 5
                 Diario.getInstance().ocurreEvento("El jugador " + getNombre() + 
                         " construye hotel en la propiedad " + ip);
@@ -166,7 +166,7 @@ public class Jugador implements Comparable <Jugador> {
         return PasoPorSalida;
     }
     
-    public ArrayList<Casilla> getPropiedades()
+    public ArrayList<CasillaCalle> getPropiedades()
     {
         return propiedades;
     }
@@ -262,10 +262,10 @@ public class Jugador implements Comparable <Jugador> {
     {
         boolean puedoEdificarCasa = false;
         // 4.1
-        float precioEdificar = propiedad.getPrecioEdificar();
+        float precioEdificar = ((CasillaCalle)propiedad).getPrecioEdificar();
 
         if (puedoGastar(precioEdificar) && 
-                propiedad.getNumCasas() < getCasasMax())
+                ((CasillaCalle)propiedad).getNumCasas() < getCasasMax())
             // 4.2
             puedoEdificarCasa = true;
         
@@ -277,11 +277,11 @@ public class Jugador implements Comparable <Jugador> {
         // 2.1
         boolean puedoEdificarHotel = false;
         // 2.2
-        float precio = propiedad.getPrecioEdificar();
+        float precio = ((CasillaCalle)propiedad).getPrecioEdificar();
             
         if (puedoGastar(precio))
-            if(propiedad.getNumHoteles() < getHotelesMax() && 
-                    propiedad.getNumCasas() >= getCasasPorHotel())
+            if(((CasillaCalle)propiedad).getNumHoteles() < getHotelesMax() && 
+                    ((CasillaCalle)propiedad).getNumCasas() >= getCasasPorHotel())
                 // 2.3
                 puedoEdificarHotel = true;
         
@@ -327,5 +327,12 @@ public class Jugador implements Comparable <Jugador> {
         cadena += "\nCasilla actual: "+(this.casillaActual+1);
         
         return cadena;
+    }
+
+    protected Jugador convertir(){
+
+        JugadorEspeculador jugador = new JugadorEspeculador(this);
+
+        return jugador;
     }
 }

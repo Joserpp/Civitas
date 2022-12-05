@@ -7,6 +7,8 @@ public class JugadorEspeculador extends Jugador {
     protected JugadorEspeculador(Jugador jugador){
 
         super(jugador);
+
+        actualizaPropiedadesPorConversion();
     }
     
     protected void actualizaPropiedadesPorConversion(){
@@ -15,5 +17,26 @@ public class JugadorEspeculador extends Jugador {
 
             ((CasillaCalle)casilla).actualizaPropietarioPorConversion(this);
         }
+    }
+
+    public String toString(){
+
+        String text;
+
+        text = super.toString();
+
+        text += " y es un jugador expeculador";
+
+        return text;
+    }
+
+    int getCasasMax(){
+
+        return (CasasMax*FactorEspeculador);
+    }
+
+    int gethotelesMax(){
+
+        return (HotelesMax*FactorEspeculador);
     }
 }
