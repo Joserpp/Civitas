@@ -1,4 +1,5 @@
 package civitas;
+
 import java.util.ArrayList;
 
 public class CasillaSorpresa extends Casilla{

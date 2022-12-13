@@ -1,24 +1,24 @@
 package civitas;
 
 import java.util.ArrayList;
-
 public class CasillaCalle extends Casilla {
     
-    private static float FACTORALQUILERCALLE = 1.0f;
-    private static float FACTORALQUILERCASA = 1.0f;
-    private static float FACTORALQUILERHOTEL = 4.0f;
+    private static float FACTORALQUILERCALLE = 1.0f,
+                         FACTORALQUILERCASA = 1.0f,
+                         FACTORALQUILERHOTEL = 4.0f;
 
-    private float precioCompra;
-    private float precioEdificar;
-    private float precioBaseAlquiler;
+    private float precioCompra,
+                  precioEdificar,
+                  precioBaseAlquiler;
     
-    private int numCasas;
-    private int numHoteles;
+    private int numCasas,
+                numHoteles;
     
     private Jugador propietario;
 
 
     public CasillaCalle(String nombre, float precioCompra,float precioEdificar, float precioBaseAlquiler){
+        
         super(nombre);
         this.precioCompra=precioCompra;
         this.precioEdificar=precioEdificar;
@@ -30,7 +30,7 @@ public class CasillaCalle extends Casilla {
 
     public int cantidadCasasHoteles(){
 
-        return numCasas+numHoteles;
+        return (numCasas+numHoteles);
     }
 
     public int getNumCasas(){
@@ -53,80 +53,92 @@ public class CasillaCalle extends Casilla {
     }
     
     public float getPrecioAlquilerCompleto(){
-        float precio;
-        precio = precioBaseAlquiler * (FACTORALQUILERCALLE+
-        numCasas*FACTORALQUILERCASA+
-        numHoteles*FACTORALQUILERHOTEL);
+        float PrecioAlquilerCompleto;
+        PrecioAlquilerCompleto = precioBaseAlquiler * (FACTORALQUILERCALLE + (numCasas*FACTORALQUILERCASA) +
+                                 (numHoteles*FACTORALQUILERHOTEL));
         
-        return precio;
+        return PrecioAlquilerCompleto;
     }
     
     public void tramitarAlquiler(Jugador jugador){
-        if(this.tienePropietario() && !this.esEsteElPropietario(jugador))
-         {   jugador.pagaAlquiler(this.getPrecioAlquilerCompleto());
-            propietario.recibe(this.getPrecioAlquilerCompleto());
-         }
+        
+        if(tienePropietario() && !esEsteElPropietario(jugador)){
+            
+            jugador.pagaAlquiler(getPrecioAlquilerCompleto());
+            propietario.recibe(getPrecioAlquilerCompleto());
+        }
     }
 
     public boolean esEsteElPropietario(Jugador jugador){
-        if(jugador == propietario)
-            return true;
-        else 
-            return false;
 
+        boolean espropietario = false;
+        
+        if(jugador == propietario)
+            espropietario = true;
+
+        return espropietario;
     }
+
     public boolean tienePropietario(){
-        return (!"".equals(propietario.getNombre()));
+        
+        boolean tiene = false;
+
+        if(propietario != null)
+            tiene = true;
+
+        return tiene;
     }
 
     boolean comprar(Jugador jugador){
 
-        propietario=jugador;
+        propietario = jugador;
 
-        return jugador.paga(precioCompra);
+        boolean puede = jugador.paga(precioCompra);
 
-
+        return puede;
     }
 
 
     boolean derruirCasas (int n, Jugador jugador){
 
-        boolean condicion=false;
+        boolean derruir = false;
 
-        if(this.esEsteElPropietario(jugador) && numCasas>=n){
-            numCasas=numCasas-n;
-            condicion=true;
+        if(esEsteElPropietario(jugador) && numCasas >= n){
+            
+            numCasas -= n;
+            derruir = true;
         }
-        return condicion;
 
+        return derruir;
     }
 
 
     boolean construirHotel(Jugador jugador){
 
-        jugador.paga(precioEdificar);
-
+        jugador.paga(getPrecioEdificar());
         numHoteles++;
-
         return true;
     }
 
 
     boolean construirCasa(Jugador jugador){
 
-        jugador.paga(this.getPrecioEdificar());
+        jugador.paga(getPrecioEdificar());
         numCasas++;
         return true;
     }
 
     void recibeJugador(int iactual, ArrayList<Jugador>todos){
-        super.informe(iactual, todos);
+        
+        informe(iactual, todos);
         Jugador jugador = todos.get(iactual);
+
         if(!tienePropietario()){
+
             jugador.puedeComprarCasilla();
         }
-        else tramitarAlquiler(jugador);
-
+        else 
+            tramitarAlquiler(jugador);
     }
 
 
@@ -135,15 +147,19 @@ public class CasillaCalle extends Casilla {
         
         String cad;
 
-        if(propietario==null){
-            cad= "Calle" + nombre + "Precios de Compra: " + precioCompra +
-            "Precio para edificar: " + precioEdificar + "Alquiler base: "+precioBaseAlquiler +
-            "Casas: " +numCasas + "Hoteles: " + numHoteles;
+        if(propietario == null){
+            
+            cad = "Calle: " + nombre + 
+                  " Precio de Compra: " + precioCompra +
+                  " Precio para edificar: " + precioEdificar + 
+                  " Alquiler base: " + precioBaseAlquiler +
+                  " Casas: " +numCasas + 
+                  " Hoteles: " + numHoteles;
         }
 
         else{
 
-            cad=propietario.getNombre();
+            cad = propietario.getNombre();
 
         }
 
