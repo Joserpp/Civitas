@@ -157,11 +157,8 @@ public class CasillaCalle extends Casilla {
                   " Hoteles: " + numHoteles;
         }
 
-        else{
-
+        else
             cad = propietario.getNombre();
-
-        }
 
         return cad;
     }
