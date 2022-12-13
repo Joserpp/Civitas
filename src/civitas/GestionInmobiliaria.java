@@ -6,10 +6,10 @@ public class GestionInmobiliaria {
     private OperacionInmobiliaria operacion;
 
 
-    GestionInmobiliaria(OperacionInmobiliaria gest, int ip){
+    GestionInmobiliaria(OperacionInmobiliaria operacion, int propiedad){
 
-        propiedad=ip;
-        operacion=gest;
+        this.propiedad = propiedad;
+        this.operacion = operacion;
     }
     
 
@@ -19,6 +19,7 @@ public class GestionInmobiliaria {
     }
 
     public int getPropiedad(){
+        
         return propiedad;
     }
 

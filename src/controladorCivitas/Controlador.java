@@ -8,6 +8,7 @@ import civitas.Jugador;
 import java.util.ArrayList;
 
 public class Controlador {
+
     private CivitasJuego juegoModel;
     private VistaTextual vista;
     
@@ -17,6 +18,7 @@ public class Controlador {
     }
     
     public void juega(){
+
         while(!juegoModel.finalDelJuego()){
             vista.actualiza();
             vista.pausa();
@@ -51,8 +53,6 @@ public class Controlador {
             }                                     
         }
         
-        System.out.println("\n---RANKING---ºn");
-        ArrayList<Jugador> ranking = juegoModel.ranking();
         vista.actualiza();
     }
     

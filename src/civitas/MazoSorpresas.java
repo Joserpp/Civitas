@@ -1,10 +1,7 @@
-//////////////////////////////////////////
-//Implementacion de la clase MazoSorpresas
-//////////////////////////////////////////
-
 package civitas;
-import java.util.ArrayList;
 
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class MazoSorpresas {
     
@@ -16,42 +13,50 @@ public class MazoSorpresas {
     
     boolean debug;
     
-    //Metodo privado inicializador
     private void init (){
-        sorpresas=new ArrayList<Sorpresa>(0);        
-        barajada=false;
-        usadas=0;
+
+        sorpresas = new ArrayList<Sorpresa>(0);        
+        barajada = false;
+        usadas = 0;
     }
 
-    //Constructores
     MazoSorpresas (){
-        this.init();
+
+        init();
     }
+
     MazoSorpresas (boolean valor_debug){
-        debug=valor_debug;
-        this.init();
-        if(debug==true)
-            Diario.getInstance().ocurreEvento("Metodo debug activado");
+
+        debug = valor_debug;
+
+        init();
+
+        if(debug == true)
+            Diario.getInstance().ocurreEvento("Debug del mazo activado");
         
     }
     void alMazo (Sorpresa s){
-        if(barajada==false){              
+
+        if(!barajada)             
             sorpresas.add(s);
-        }
     }
     
     Sorpresa siguiente(){
-        if(barajada==false || usadas==sorpresas.size() && debug==false){
+
+        if(!barajada || usadas == sorpresas.size() && !debug){
+
+            Collections.shuffle(sorpresas);
             
-            barajada=true;
-            usadas=0;
+            barajada = true;
+            usadas = 0;
         }
         
         usadas++;
-        sorpresas.add(sorpresas.get(0));
-        Sorpresa s=sorpresas.get(0);
+
+        Sorpresa sorpre = sorpresas.get(0);
         sorpresas.remove(0);
-        
-        return s;    
+        sorpresas.add(sorpre);
+
+        return sorpre;
     }
 }

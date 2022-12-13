@@ -1,17 +1,10 @@
 
 package civitas;
+
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Random;
-
-
-//import javax.lang.model.util.ElementScanner6;
-
 
 public class CivitasJuego {
-    
-    private int indiceJugadorActual;
 
     private ArrayList<Jugador> jugadores;
  
@@ -22,41 +15,37 @@ public class CivitasJuego {
     private MazoSorpresas mazo;
 
     private Tablero tablero;
-    
-    private OperacionJuego operacion;
 
-    //Constructor privado
+    private int indiceJugadorActual;
 
     public CivitasJuego (ArrayList<String> nombres,boolean debug){
         
-        jugadores=new ArrayList<Jugador>();
+        jugadores = new ArrayList<Jugador>();
        
-        for(int i=0;i<nombres.size();i++){
-            String nombre_jugador = nombres.get(i);
+        for(int i = 0; i < nombres.size(); i++){
 
-            Jugador jugador = new Jugador(nombre_jugador);
+            Jugador jugador = new Jugador(nombres.get(i));
 
             jugadores.add(jugador);
-
         }
+
         estadojuego = new GestorEstados();
-        estado=estadojuego.estadoInicial();
+
+        estado = estadojuego.estadoInicial();
         
         Dado dado = Dado.getInstance(); 
+
         dado.setDebug(debug);
 
         indiceJugadorActual=dado.quienEmpieza(4);
 
-        mazo=new MazoSorpresas(debug);
+        mazo = new MazoSorpresas(debug);
 
-        tablero=new Tablero();
+        tablero = new Tablero();
 
         inicializaMazoSorpresa();
 
         inicializaTablero(mazo);
-
-
-
     }
 
     private void inicializaTablero(MazoSorpresas mazo){
@@ -105,6 +94,7 @@ public class CivitasJuego {
     }
 
     public Tablero getTablero(){
+        
         return tablero;
     }
 
@@ -116,7 +106,7 @@ public class CivitasJuego {
 
     public void siguientePasoCompletado(OperacionJuego operacion){
 
-        estado=estadojuego.siguienteEstado (jugadores.get(indiceJugadorActual), estado, operacion);
+        estado = estadojuego.siguienteEstado(jugadores.get(indiceJugadorActual), estado, operacion);
 
     }
 
@@ -133,20 +123,23 @@ public class CivitasJuego {
     }
 
     public boolean finalDelJuego(){
-        boolean fin = false;
+
+        boolean finalJuego = false;
+
         for(Jugador jugador : jugadores){
+
             if(jugador.enBancarrota() == true)
-                fin = true;
+                finalJuego = true;
         }
         
-        return fin;
+        return finalJuego;
     }
 
     public ArrayList<Jugador> ranking(){
 
-        Collections.sort(jugadores,Jugador::compareTo);
-        return jugadores;
+        Collections.sort(jugadores, Jugador::compareTo);
 
+        return jugadores;
     }
 
     private void contabilizarPasosPorSalida(){
@@ -158,46 +151,49 @@ public class CivitasJuego {
 
     public boolean comprar(){
 
-        Jugador jugadorActual=jugadores.get(indiceJugadorActual);
-        int numCasillaActual=jugadorActual.getCasillaActual();
+        Jugador jugadorActual = getJugadorActual();
 
-        Casilla casilla=tablero.getCasilla(numCasillaActual);
+        int numCasillaActual = jugadorActual.getCasillaActual();
 
-        boolean res=jugadorActual.comprar(casilla);
+        Casilla casilla = tablero.getCasilla(numCasillaActual);
 
-        return res;
+        boolean puede = jugadorActual.comprar(casilla);
 
+        return puede;
     }
 
     void avanzaJugador(){
 
-        Jugador jugadorActual=getJugadorActual();
+        Jugador jugadorActual = getJugadorActual();
 
-        int posicionActual=jugadorActual.getCasillaActual();
+        int posicionActual = jugadorActual.getCasillaActual();
 
-        int tirada=Dado.getInstance().tirar();
+        int tirada = Dado.getInstance().tirar();
 
-        int posicionNueva=tablero.nuevaPosicion(posicionActual,tirada);
+        int posicionNueva = tablero.nuevaPosicion(posicionActual, tirada);
 
-        Casilla casilla=tablero.getCasilla(posicionNueva);
+        Casilla casilla = tablero.getCasilla(posicionNueva);
 
-        this.contabilizarPasosPorSalida();
+        contabilizarPasosPorSalida();
 
         jugadorActual.moverACasilla(posicionNueva);
 
-        casilla.recibeJugador(indiceJugadorActual,jugadores);
+        casilla.recibeJugador(indiceJugadorActual, jugadores);
     }
 
     public OperacionJuego siguientePaso(){
+
         Jugador jugadorActual = getJugadorActual();
 
         OperacionJuego operacion = estadojuego.siguienteOperacion(jugadorActual, estado);
 
         if (operacion == OperacionJuego.PASAR_TURNO){
+
             pasarTurno();
             siguientePasoCompletado(operacion);
         }
         else if(operacion == OperacionJuego.AVANZAR){
+
             avanzaJugador();
             siguientePasoCompletado(operacion);
         }

@@ -8,9 +8,10 @@ public class Tablero {
     private boolean porSalida;
 
     private void init(){
+
         casillas = new ArrayList<Casilla>(0);
+        casillas.add(new Casilla("Salida"));
         porSalida = false;
-        
     }
 
     public Tablero (){
@@ -18,27 +19,27 @@ public class Tablero {
     }
 
     private boolean correcto(int numCasilla){
-        boolean valido = false;
-        if (numCasilla >= 0 && numCasilla < casillas.size())
-            valido = true;
 
-        return valido;
+        return ((numCasilla >= 0) && (numCasilla < casillas.size()));
     }
 
     boolean computarPasoPorSalida(){
-        boolean condicion=porSalida;
+
+        boolean pasoPorSalida = porSalida;
         
         porSalida = false;
         
-        return condicion;
+        return pasoPorSalida;
         
     }
 
     void añadeCasilla(Casilla casilla){
+
         casillas.add(casilla);
     }
 
     public Casilla getCasilla (int numCasilla){
+
         if (correcto(numCasilla))
             return casillas.get(numCasilla);
 
@@ -46,17 +47,19 @@ public class Tablero {
     }
 
     public ArrayList<Casilla> geCasillas(){
+
         return casillas;
     }
 
     int nuevaPosicion (int actual, int tirada){
+
         int nuevaPos;
 
         nuevaPos = actual + tirada;
 
-        if (nuevaPos > casillas.size()){
+        if (nuevaPos >= casillas.size()){
 
-            nuevaPos = nuevaPos % casillas.size();
+            nuevaPos %= casillas.size();
             porSalida = true;
         }
 
