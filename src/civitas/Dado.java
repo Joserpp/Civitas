@@ -24,9 +24,18 @@ public class Dado {
         return instance;
     }
 
-    int getUltimoResultado(){
+    public int getUltimoResultado(){
         
         return ultimoResultado;
+    }
+
+    public boolean getDebug() {
+        return debug;
+    }
+    
+    public void setDebug(boolean dbg){
+    
+        debug = dbg;
     }
     
     int tirar()
@@ -41,11 +50,6 @@ public class Dado {
     int quienEmpieza(int n){
         
         return random.nextInt(n);
-    }
-    
-    void setDebug(boolean d){
-        
-        debug = d;
     }
 }
 
