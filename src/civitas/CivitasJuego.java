@@ -128,7 +128,7 @@ public class CivitasJuego {
 
         for(Jugador jugador : jugadores){
 
-            if(jugador.enBancarrota() == true)
+            if(jugador.enBancarrota())
                 finalJuego = true;
         }
         
