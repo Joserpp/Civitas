@@ -1,8 +1,11 @@
 
 package civitas;
 
+import GUI.Dado;
 import java.util.ArrayList;
 import java.util.Collections;
+
+import GUI.Dado;
 
 public class CivitasJuego {
 
@@ -18,7 +21,7 @@ public class CivitasJuego {
 
     private int indiceJugadorActual;
 
-    public CivitasJuego (ArrayList<String> nombres,boolean debug){
+    public CivitasJuego (ArrayList<String> nombres, boolean debug){
         
         jugadores = new ArrayList<Jugador>();
        
@@ -52,18 +55,18 @@ public class CivitasJuego {
 
         tablero.añadeCasilla(new CasillaCalle("Velázquez", 60, 20, 50));
         tablero.añadeCasilla(new CasillaCalle( "Salamanca", 80, 30, 100));
+        tablero.añadeCasilla(new CasillaSorpresa("Sorpresa", mazo));
         tablero.añadeCasilla(new CasillaCalle("Castellana", 100, 40, 200));
         tablero.añadeCasilla(new CasillaCalle("Tirso de M.", 120, 50, 300));
-        tablero.añadeCasilla(new CasillaSorpresa("Sorpresa", mazo));
         tablero.añadeCasilla(new CasillaCalle("Lavapiés", 140, 60, 400));
         tablero.añadeCasilla(new CasillaCalle("Goya", 150, 70, 500));
         tablero.añadeCasilla(new CasillaSorpresa("Sorpresa", mazo));
         tablero.añadeCasilla(new CasillaCalle("Mataelpino", 200, 80, 600));
-        tablero.añadeCasilla(new Casilla("Puro relax"));
+        tablero.añadeCasilla(new Casilla("Parking Público"));
         tablero.añadeCasilla(new CasillaCalle("Leganitos", 220, 90, 700));
         tablero.añadeCasilla(new CasillaCalle("Serrano", 240, 100, 800));
-        tablero.añadeCasilla(new CasillaCalle("P. del Prado", 260, 110, 900));
         tablero.añadeCasilla(new CasillaSorpresa("Sorpresa", mazo));
+        tablero.añadeCasilla(new CasillaCalle("P. del Prado", 260, 110, 900));
         tablero.añadeCasilla(new CasillaCalle("Valdelatas", 280, 120, 1000));
         tablero.añadeCasilla(new CasillaCalle("Méndez A.", 300, 130, 1100));
         tablero.añadeCasilla(new CasillaSorpresa("Sorpresa", mazo));

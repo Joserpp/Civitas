@@ -2,17 +2,15 @@ package controladorCivitas;
 
 import civitas.CivitasJuego;
 import civitas.OperacionJuego;
-import vistaTextualCivitas.VistaTextual;
 import civitas.OperacionInmobiliaria;
-import civitas.Jugador;
-import java.util.ArrayList;
+import GUI.CivitasView;
 
 public class Controlador {
 
     private CivitasJuego juegoModel;
-    private VistaTextual vista;
+    private CivitasView vista;
     
-    public Controlador (CivitasJuego juegoModel, VistaTextual vista){
+    public Controlador (CivitasJuego juegoModel, CivitasView vista){
         this.juegoModel = juegoModel;
         this.vista = vista;
     }

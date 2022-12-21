@@ -9,7 +9,7 @@ public class Jugador implements Comparable <Jugador> {
 
     protected static float PasoPorSalida = 1000;
     
-    private static float SaldoInicial = 7500;
+    private static float SaldoInicial = 1000;
     
     private int casillaActual;
     private String nombre;
@@ -23,6 +23,7 @@ public class Jugador implements Comparable <Jugador> {
         propiedades = new ArrayList<>();
         saldo = SaldoInicial;
         puedeComprar = true;
+        casillaActual = 0;
     }
 
     protected Jugador(Jugador otro)
@@ -31,6 +32,7 @@ public class Jugador implements Comparable <Jugador> {
         this.propiedades = otro.propiedades;
         this.saldo = otro.saldo;
         this.puedeComprar = otro.puedeComprar;
+        this.casillaActual = otro.casillaActual;
     }
 
     boolean enBancarrota()
@@ -78,7 +80,7 @@ public class Jugador implements Comparable <Jugador> {
         return puedeComprar;
     }
 
-    protected float getSaldo() 
+    public float getSaldo() 
     {
         return saldo;
     }
@@ -296,5 +298,10 @@ public class Jugador implements Comparable <Jugador> {
         JugadorEspeculador jugador = new JugadorEspeculador(this);
 
         return jugador;
+    }
+    
+    public boolean esEspecualdor(){
+        
+        return false;
     }
 }

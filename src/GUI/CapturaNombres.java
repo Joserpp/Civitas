@@ -64,6 +64,7 @@ public class CapturaNombres extends javax.swing.JDialog {
 
         jugar.setText("Comenzar");
         jugar.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jugarActionPerformed(evt);
             }

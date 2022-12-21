@@ -27,6 +27,11 @@ public class CasillaCalle extends Casilla {
         this.numHoteles=0;
         this.propietario=null;
     }
+    
+    public Jugador getPropietario(){
+    
+        return propietario;
+    }
 
     public int cantidadCasasHoteles(){
 

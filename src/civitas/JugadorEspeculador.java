@@ -18,7 +18,14 @@ public class JugadorEspeculador extends Jugador {
             ((CasillaCalle)casilla).actualizaPropietarioPorConversion(this);
         }
     }
-
+    
+    @Override
+    boolean paga(float cantidad){
+    
+        return modificarSaldo(((cantidad*-1)/FactorEspeculador));
+    }
+    
+    @Override
     public String toString(){
 
         String text;
@@ -38,5 +45,11 @@ public class JugadorEspeculador extends Jugador {
     int gethotelesMax(){
 
         return (HotelesMax*FactorEspeculador);
+    }
+    
+    @Override
+    public boolean esEspecualdor(){
+        
+        return false;
     }
 }
